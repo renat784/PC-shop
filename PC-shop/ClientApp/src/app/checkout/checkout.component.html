@@ -1,0 +1,100 @@
+<h3 class="mb-5">Оформление заказа</h3>
+<div class="row">
+  <div class="col-8">
+    <!-- log form -->
+    <div>
+      <h5>Ваши контактные данные</h5>
+      <div class="my-3">
+        <a href="#">Я новый покупатель</a>
+        <a class="ml-5" href="#">Я постоянный клиент</a>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input class="form-control" type="text" id="name" />
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label for="lastName">LastName</label>
+            <input class="form-control" type="text" id="lastName" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Order -->
+    <div class="my-5">
+      <div style="display: flex; justify-content: space-between">
+        <h4>Заказ №1</h4>
+        <span
+          >на сумму: <strong>{{ service.PriceTotal() }} USD</strong>
+        </span>
+      </div>
+      <div>
+        <ul *ngIf="cart" class="list-unstyled">
+          <li class="my-4" *ngFor="let item of cart">
+            <div class="row">
+              <div class="col-2">
+                <img
+                  style="width: 75px; height: 75px"
+                  [src]="service.GetImage(item.product)"
+                />
+              </div>
+              <div class="col-3">
+                {{ item.product.name }}
+              </div>
+              <div class="col-2">{{ item.count }} шт.</div>
+              <div class="col-2">{{ item.product.price }} USD</div>
+              <div class="col-3">
+                всего: {{ item.count * item.product.price }} USD
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- promocode -->
+  <div class="col-4">
+    <div class="card my-3" style="width: 18rem">
+      <div class="card-body">
+        <p class="card-text">Промокод</p>
+      </div>
+    </div>
+
+    <!-- bonus -->
+    <div class="card my-3" style="width: 18rem">
+      <div class="card-body">
+        <p class="card-text">Бонусы пока не доступны</p>
+      </div>
+    </div>
+
+    <!-- total -->
+    <div class="card" style="width: 18rem">
+      <div class="card-body">
+        <h4 class="card-title">Итого</h4>
+        <div class="card-text">
+          <div style="display: flex; justify-content: space-between">
+            <h5>К оплате</h5>
+            <h5>{{ service.PriceTotal() }} USD</h5>
+          </div>
+        </div>
+        <a href="#" class="btn btn-success col-12 my-3">Заказ подтверждаю</a>
+        <p>
+          <small
+            >Получение заказа от 5 000₴ только по паспорту (Закон от 06.12.2019
+            № 361-IX)</small
+          >
+        </p>
+        <p>
+          <small
+            >Подтверждая заказ, я принимаю условия
+            <a href="#">пользовательского соглашения</a></small
+          >
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

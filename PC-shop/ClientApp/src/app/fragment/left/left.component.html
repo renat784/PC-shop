@@ -1,0 +1,188 @@
+<div>
+  <p>
+    <span>Производитель</span>
+    <span class="ml-2">{{ makes.length }}</span>
+  </p>
+  <div>
+    <input class="form-control" type="text" placeholder="Поиск" />
+  </div>
+</div>
+
+<!-- makes -->
+<div class="mt-3">
+  <p>Алфавитный указатель</p>
+  <div>
+    <div
+      *ngFor="let make of makes"
+      class="custom-control custom-checkbox mr-sm-2 my-2"
+    >
+      <input
+        type="checkbox"
+        class="custom-control-input"
+        id="cpu_{{ make.name }}"
+      />
+      <label class="custom-control-label" for="cpu_{{ make.name }}">{{
+        make.name
+      }}</label>
+      <span class="ml-3">({{ make.count }})</span>
+    </div>
+  </div>
+</div>
+
+<!-- price -->
+<div class="mt-5">
+  <p>Цена</p>
+
+  <form>
+    <div class="row mx-0">
+      <input
+        [(ngModel)]="priceMin"
+        type="number"
+        name="priceMin"
+        class="form-control col-4"
+      />
+      <span></span>
+      <input
+        [(ngModel)]="priceMax"
+        type="number"
+        name="priceMax"
+        class="form-control col-4 ml-1"
+      />
+      <button type="submit" class="btn btn-primary col-3 ml-1">Ok</button>
+    </div>
+  </form>
+</div>
+
+<!--specific for cpu -->
+<div *ngIf="categoryId == service.Category.Cpu">
+  <!-- количество ядер -->
+  <div class="mt-5">
+    <p>Количество ядер</p>
+    <div>
+      <div
+        *ngFor="let core of cores"
+        class="custom-control custom-checkbox mr-sm-2 my-2"
+      >
+        <input
+          type="checkbox"
+          class="custom-control-input"
+          id="core_{{ core.name }}"
+        />
+        <label class="custom-control-label" for="core_{{ core.name }}">{{
+          core.name
+        }}</label>
+        <span class="ml-3">({{ core.count }})</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- количество потоков -->
+  <div class="mt-5">
+    <p>Количество потоков</p>
+    <div>
+      <div
+        *ngFor="let thread of threads"
+        class="custom-control custom-checkbox mr-sm-2 my-2"
+      >
+        <input
+          type="checkbox"
+          class="custom-control-input"
+          id="thread_{{ thread.name }}"
+        />
+        <label class="custom-control-label" for="thread_{{ thread.name }}">{{
+          thread.name
+        }}</label>
+        <span class="ml-3">({{ thread.count }})</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- с графикой и без -->
+  <div class="mt-5">
+    <p>Интегрированная графика</p>
+    <div>
+      <div
+        *ngFor="let graphic of graphics"
+        class="custom-control custom-checkbox mr-sm-2 my-2"
+      >
+        <input
+          type="checkbox"
+          class="custom-control-input"
+          id="graphic_{{ graphic.name }}"
+        />
+        <label class="custom-control-label" for="graphic_{{ graphic.name }}">{{
+          graphic.name
+        }}</label>
+        <span class="ml-3">({{ graphic.count }})</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- техпроцесс -->
+  <div class="mt-5">
+    <p>Техпроцесс</p>
+    <div>
+      <div
+        *ngFor="let tech of techs"
+        class="custom-control custom-checkbox mr-sm-2 my-2"
+      >
+        <input
+          type="checkbox"
+          class="custom-control-input"
+          id="tech_{{ tech.name }}"
+        />
+        <label class="custom-control-label" for="tech_{{ tech.name }}"
+          >{{ tech.name }} нм</label
+        >
+        <span class="ml-3">({{ tech.count }})</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--specific for ssd -->
+<div *ngIf="categoryId == service.Category.Ssd">
+  <!-- capacity -->
+  <div class="mt-5">
+    <p>Емкость диска</p>
+    <div>
+      <div
+        *ngFor="let capacity of capacities"
+        class="custom-control custom-checkbox mr-sm-2 my-2"
+      >
+        <input
+          type="checkbox"
+          class="custom-control-input"
+          id="ssd_capacity_{{ capacity.name }}"
+        />
+        <label
+          class="custom-control-label"
+          for="ssd_capacity_{{ capacity.name }}"
+          >{{ capacity.name }} Gb</label
+        >
+        <span class="ml-3">({{ capacity.count }})</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- read speed -->
+  <div class="mt-5">
+    <p>Скорость чтения</p>
+    <div>
+      <div
+        *ngFor="let read of readSpeeds"
+        class="custom-control custom-checkbox mr-sm-2 my-2"
+      >
+        <input
+          type="checkbox"
+          class="custom-control-input"
+          id="ssd_read_{{ read.name }}"
+        />
+        <label class="custom-control-label" for="ssd_read_{{ read.name }}"
+          >{{ read.name }} Mb/s</label
+        >
+        <span class="ml-3">({{ read.count }})</span>
+      </div>
+    </div>
+  </div>
+</div>

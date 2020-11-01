@@ -1,0 +1,278 @@
+<div *ngIf="product">
+  <div>
+    <a [routerLink]="['/']">Home</a>
+  </div>
+
+  <div class="my-5">
+    <h1>{{ product.name }}</h1>
+  </div>
+
+  <!-- tab panel -->
+  <div class="row">
+    <div class="col-9">
+      <ul class="nav nav-tabs mb-5" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <a
+            class="nav-link active"
+            id="features-tab"
+            data-toggle="tab"
+            href="#features"
+            role="tab"
+            aria-controls="features"
+            aria-selected="true"
+            >Характеристики</a
+          >
+        </li>
+        <li class="nav-item" role="presentation">
+          <a
+            class="nav-link"
+            id="photo-tab"
+            data-toggle="tab"
+            href="#photo"
+            role="tab"
+            aria-controls="photo"
+            aria-selected="false"
+            >Фото</a
+          >
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div
+          class="tab-pane fade show active"
+          id="features"
+          role="tabpanel"
+          aria-labelledby="features-tab"
+        >
+          <!-- for cpu -->
+          <div *ngIf="product.categoryId == service.Category.Cpu" class="row">
+            <ul class="col-4 list-unstyled">
+              <li>Производитель</li>
+              <li>Интегрированная графика</li>
+              <li>Количество ядер</li>
+              <li>Количество потоков</li>
+              <li>Техпроцесс</li>
+            </ul>
+            <ul class="col-4 list-unstyled">
+              <li>{{ product.make }}</li>
+              <li>{{ product.graphics }}</li>
+              <li>{{ product.countOfCores }} cores</li>
+              <li>{{ product.countOfThreads }} threads</li>
+              <li>{{ product.techProcess }} нм</li>
+            </ul>
+          </div>
+
+          <!-- for hdd -->
+          <div *ngIf="product.categoryId == service.Category.Hdd" class="row">
+            <ul class="col-4 list-unstyled">
+              <li>Производитель</li>
+              <li>Модель</li>
+              <li>Емкость диска</li>
+              <li>Скорость чтения</li>
+              <li>Скорость записи</li>
+            </ul>
+            <ul class="col-4 list-unstyled">
+              <li>{{ product.make }}</li>
+              <li>{{ product.name }}</li>
+              <li>{{ product.capacity }}</li>
+              <li>{{ product.readSpeed }} Mb/s</li>
+              <li>{{ product.writeSpeed }} Mb/s</li>
+            </ul>
+          </div>
+
+          <!-- for keyboards -->
+          <div
+            *ngIf="product.categoryId == service.Category.Keyboard"
+            class="row"
+          >
+            <ul class="col-4 list-unstyled">
+              <li>Производитель</li>
+              <li>Модель</li>
+              <li>Тип подключения</li>
+              <li>Тип интерфейса</li>
+              <li>Тип клавиатуры</li>
+            </ul>
+            <ul class="col-4 list-unstyled">
+              <li>{{ product.make }}</li>
+              <li>{{ product.name }}</li>
+              <li>{{ product.connectionType }}</li>
+              <li>{{ product.interface }}</li>
+              <li>{{ product.type }}</li>
+            </ul>
+          </div>
+
+          <!-- for monitors -->
+          <div
+            *ngIf="product.categoryId == service.Category.Monitor"
+            class="row"
+          >
+            <ul class="col-4 list-unstyled">
+              <li>Производитель</li>
+              <li>Модель</li>
+              <li>Диагональ монитора</li>
+              <li>Частота обновления</li>
+              <li>Разрешение монитора</li>
+              <li>Тип матрицы</li>
+              <li>Соотношение сторон</li>
+            </ul>
+            <ul class="col-4 list-unstyled">
+              <li>{{ product.make }}</li>
+              <li>{{ product.name }}</li>
+              <li>{{ product.size }} дюймов</li>
+              <li>{{ product.frequency }} Гц</li>
+              <li>{{ product.resolution }} пикселов</li>
+              <li>{{ product.matrixType }}</li>
+              <li>{{ product.aspectRatio }}</li>
+            </ul>
+          </div>
+
+          <!-- for motherboard -->
+          <div
+            *ngIf="product.categoryId == service.Category.Motherboard"
+            class="row"
+          >
+            <ul class="col-4 list-unstyled">
+              <li>Производитель</li>
+              <li>Модель</li>
+              <li>Тип сокета</li>
+              <li>Форм фактор</li>
+              <li>Поддерживаемая память</li>
+              <li>Интегрированное видео</li>
+              <li>Видео выход</li>
+            </ul>
+            <ul class="col-4 list-unstyled">
+              <li>{{ product.make }}</li>
+              <li>{{ product.name }}</li>
+              <li>{{ product.socket }}</li>
+              <li>{{ product.formFactor }}</li>
+              <li>{{ product.memorySupport }}</li>
+              <li>{{ product.integratedVideoCard }}</li>
+              <li>{{ product.videoExit }}</li>
+            </ul>
+          </div>
+
+          <!-- for mouse-->
+          <div *ngIf="product.categoryId == service.Category.Mouse" class="row">
+            <ul class="col-4 list-unstyled">
+              <li>Производитель</li>
+              <li>Модель</li>
+              <li>Тип подключения</li>
+              <li>Размер мышки</li>
+              <li>Интерфейс подключения</li>
+              <li>Назначение</li>
+            </ul>
+            <ul class="col-4 list-unstyled">
+              <li>{{ product.make }}</li>
+              <li>{{ product.name }}</li>
+              <li>{{ product.connectionType }}</li>
+              <li>{{ product.size }}</li>
+              <li>{{ product.interface }}</li>
+              <li>{{ product.purpose }}</li>
+            </ul>
+          </div>
+
+          <!-- for ram -->
+          <div *ngIf="product.categoryId == service.Category.Ram" class="row">
+            <ul class="col-4 list-unstyled">
+              <li>Производитель</li>
+              <li>Модель</li>
+              <li>Количесто памяти</li>
+              <li>Тип памяти</li>
+              <li>Частота работы</li>
+              <li>Назначение</li>
+            </ul>
+            <ul class="col-4 list-unstyled">
+              <li>{{ product.make }}</li>
+              <li>{{ product.name }}</li>
+              <li>{{ product.capacity }} Гб</li>
+              <li>{{ product.memoryType }}</li>
+              <li>{{ product.frequency }} ГГц</li>
+              <li>{{ product.purpose }}</li>
+            </ul>
+          </div>
+
+          <!-- for ssd -->
+          <div *ngIf="product.categoryId == service.Category.Ssd" class="row">
+            <ul class="col-4 list-unstyled">
+              <li>Производитель</li>
+              <li>Модель</li>
+              <li>Емкость диска</li>
+              <li>Скорость чтения</li>
+              <li>Скорость записи</li>
+            </ul>
+            <ul class="col-4 list-unstyled">
+              <li>{{ product.make }}</li>
+              <li>{{ product.name }}</li>
+              <li>{{ product.capacity }}</li>
+              <li>{{ product.readSpeed }} Mb/s</li>
+              <li>{{ product.writeSpeed }} Mb/s</li>
+            </ul>
+          </div>
+
+          <!-- for videocard-->
+          <div
+            *ngIf="product.categoryId == service.Category.Videocard"
+            class="row"
+          >
+            <ul class="col-4 list-unstyled">
+              <li>Производитель</li>
+              <li>Модель</li>
+              <li>Объем видеопамяти</li>
+              <li>Тип памяти</li>
+              <li>Назначение</li>
+            </ul>
+            <ul class="col-4 list-unstyled">
+              <li>{{ product.make }}</li>
+              <li>{{ product.name }}</li>
+              <li>{{ product.memorySize }} Gb</li>
+              <li>{{ product.memoryType }}</li>
+              <li>{{ product.purpose }}</li>
+            </ul>
+          </div>
+
+          <small
+            >* Характеристики и комплектация товара могут изменяться
+            производителем без уведомления</small
+          >
+        </div>
+        <div
+          class="tab-pane fade"
+          id="photo"
+          role="tabpanel"
+          aria-labelledby="photo-tab"
+        >
+          <div>
+            <img
+              width="500"
+              class="my-3"
+              *ngFor="let image of service.GetImages(product)"
+              [src]="image"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-3 mt-5">
+      <div class="row">
+        <div class="col-3">
+          <img width="100" [src]="service.GetImage(product)" />
+        </div>
+        <div class="col-9 text-right">
+          <p>{{ product.name }}</p>
+        </div>
+      </div>
+      <div class="my-5">
+        <h3>{{ product.price }} USD</h3>
+        <div>
+          <button
+            (click)="service.AddItemToCart(product)"
+            data-toggle="modal"
+            data-target="#shoppingCart"
+            class="btn btn-success col-12"
+          >
+            Купить
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

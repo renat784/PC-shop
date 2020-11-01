@@ -1,0 +1,111 @@
+<!--right part - products-->
+<div>
+  <div class="row">
+    <div class="col-3 my-3 px-0" *ngFor="let product of products">
+      <div class="card">
+        <a [routerLink]="['/details/' + product.categoryId + '/' + product.id]">
+          <img
+            [src]="service.GetImage(product)"
+            class="card-img-top"
+            alt="..."
+          />
+        </a>
+        <div class="card-body">
+          <h5 class="card-title">{{ product.name }}</h5>
+
+          <!-- for cpu -->
+          <div
+            *ngIf="categoryId == service.Category.Cpu"
+            class="card-text pb-4"
+          >
+            <p>Количество ядер: {{ product.countOfCores }}</p>
+            <p>Количество потоков: {{ product.countOfThreads }}</p>
+            <p>Интегрированная графика: {{ product.graphics }}</p>
+          </div>
+
+          <!-- for hdd -->
+          <div
+            *ngIf="categoryId == service.Category.Hdd"
+            class="card-text pb-4"
+          >
+            <p>Емкость диска: {{ product.capacity }}</p>
+            <p>Скорость чтения: {{ product.readSpeed }}</p>
+            <p>Скорость записи: {{ product.writeSpeed }}</p>
+          </div>
+
+          <!-- for keyboard-->
+          <div
+            *ngIf="categoryId == service.Category.Keyboard"
+            class="card-text pb-4"
+          >
+            <p>Тип подключения: {{ product.connectionType }}</p>
+            <p>Тип интерфейса: {{ product.interface }}</p>
+            <p>Тип клавиатуры: {{ product.type }}</p>
+          </div>
+
+          <!-- for monitor-->
+          <div
+            *ngIf="categoryId == service.Category.Monitor"
+            class="card-text pb-4"
+          >
+            <p>Диагональ монитора: {{ product.size }}</p>
+            <p>Разрешение монитора: {{ product.resolution }}</p>
+            <p>Тип матрицы: {{ product.matrixType }}</p>
+          </div>
+
+          <!-- for motherboard-->
+          <div
+            *ngIf="categoryId == service.Category.Motherboard"
+            class="card-text pb-4"
+          >
+            <p>Форм фактор: {{ product.formFactor }}</p>
+            <p>Поддерживаемая память: {{ product.memorySupport }}</p>
+            <p>Видео выход: {{ product.videoExit }}</p>
+          </div>
+
+          <!-- for mouse-->
+          <div
+            *ngIf="categoryId == service.Category.Mouse"
+            class="card-text pb-4"
+          >
+            <p>Тип подключения: {{ product.connectionType }}</p>
+            <p>Интерфейс подключения: {{ product.interface }}</p>
+            <p>Размер мышки: {{ product.size }}</p>
+          </div>
+
+          <!-- for ram-->
+          <div
+            *ngIf="categoryId == service.Category.Ram"
+            class="card-text pb-4"
+          >
+            <p>Количесто памяти: {{ product.capacity }}</p>
+            <p>Тип памяти: {{ product.memoryType }}</p>
+            <p>Частота работы: {{ product.frequency }}</p>
+          </div>
+
+          <!-- for ssd -->
+          <div
+            *ngIf="categoryId == service.Category.Ssd"
+            class="card-text pb-4"
+          >
+            <p>Емкость носителя: {{ product.capacity }} Gb</p>
+            <p>Скорость чтения: {{ product.readSpeed }} Mb/s</p>
+            <p>Скорость записи: {{ product.writeSpeed }} Mb/s</p>
+          </div>
+
+          <!-- for videocard -->
+          <div
+            *ngIf="categoryId == service.Category.Videocard"
+            class="card-text pb-4"
+          >
+            <p>Тип чипсета: {{ product.chip }}</p>
+            <p>Объем видеопамяти: {{ product.memorySize }}</p>
+            <p>Тип памяти: {{ product.memoryType }}</p>
+          </div>
+
+          <h5 class="card-bottom">{{ product.price }} USD</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

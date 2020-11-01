@@ -1,0 +1,11 @@
+.category {
+  text-align: center;
+}
+
+.category img {
+  max-width: 75%;
+}
+
+.category p {
+  font-weight: 600;
+}

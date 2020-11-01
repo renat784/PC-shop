@@ -1,0 +1,159 @@
+<app-top [title]="'SSD диски'"></app-top>
+<!-- <h3>SSD диски</h3>
+
+<div class="row"> -->
+<!-- sort -->
+<!-- <div class="offset-7 col-3">
+    <select class="form-control">
+      <option value="111">От дешевых к дорогим</option>
+      <option value="222">От дорогих к дешевым</option>
+      <option value="222">Популярные</option>
+      <option value="222">Новинки</option>
+      <option value="222">Акционные</option>
+      <option selected value="222">По рейтингу</option>
+    </select>
+  </div> -->
+
+<!-- toggle view buttons -->
+<!-- <div class="col-2">
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+      <label class="btn btn-secondary active">
+        <input type="radio" name="options" id="option1" checked /> Large
+      </label>
+      <label class="btn btn-secondary">
+        <input type="radio" name="options" id="option2" /> Small
+      </label>
+    </div>
+  </div>
+</div> -->
+
+<div class="row">
+  <!-- left part - filters -->
+  <div class="col-3">
+    <app-left></app-left>
+  </div>
+  <!-- <div>
+      <p>
+        <span>Производитель</span>
+        <span class="ml-2">{{ makes.length }}</span>
+      </p>
+      <div>
+        <input class="form-control" type="text" placeholder="Поиск" />
+      </div>
+    </div> -->
+
+  <!-- makes -->
+  <!-- <div class="mt-3">
+      <p>Алфавитный указатель</p>
+      <div>
+        <div
+          *ngFor="let make of makes"
+          class="custom-control custom-checkbox mr-sm-2 my-2"
+        >
+          <input
+            type="checkbox"
+            class="custom-control-input"
+            id="ssd_{{ make.name }}"
+          />
+          <label class="custom-control-label" for="ssd_{{ make.name }}">{{
+            make.name
+          }}</label>
+          <span class="ml-3">({{ make.count }})</span>
+        </div>
+      </div>
+    </div> -->
+
+  <!-- price -->
+  <!-- <div class="mt-5">
+      <p>Цена</p>
+
+      <form>
+        <div class="row mx-0">
+          <input
+            [(ngModel)]="priceMin"
+            type="number"
+            name="priceMin"
+            class="form-control col-4"
+          />
+          <span></span>
+          <input
+            [(ngModel)]="priceMax"
+            type="number"
+            name="priceMax"
+            class="form-control col-4 ml-1"
+          />
+          <button type="submit" class="btn btn-primary col-3 ml-1">Ok</button>
+        </div>
+      </form>
+    </div> -->
+
+  <!-- capacity -->
+  <!-- <div class="mt-5">
+      <p>Емкость диска</p>
+      <div>
+        <div
+          *ngFor="let capacity of capacities"
+          class="custom-control custom-checkbox mr-sm-2 my-2"
+        >
+          <input
+            type="checkbox"
+            class="custom-control-input"
+            id="ssd_capacity_{{ capacity.name }}"
+          />
+          <label
+            class="custom-control-label"
+            for="ssd_capacity_{{ capacity.name }}"
+            >{{ capacity.name }} Gb</label
+          >
+          <span class="ml-3">({{ capacity.count }})</span>
+        </div>
+      </div>
+    </div> -->
+
+  <!-- read speed -->
+  <!-- <div class="mt-5">
+      <p>Скорость чтения</p>
+      <div>
+        <div
+          *ngFor="let read of readSpeeds"
+          class="custom-control custom-checkbox mr-sm-2 my-2"
+        >
+          <input
+            type="checkbox"
+            class="custom-control-input"
+            id="ssd_read_{{ read.name }}"
+          />
+          <label class="custom-control-label" for="ssd_read_{{ read.name }}"
+            >{{ read.name }} Mb/s</label
+          >
+          <span class="ml-3">({{ read.count }})</span>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <!--right part - products-->
+  <!-- <div class="col-9">
+    <div class="row">
+      <div class="col-3 my-3 px-0" *ngFor="let ssd of ssdList">
+        <div class="card">
+          <a [routerLink]="['/ssd/details', ssd.id]">
+            <img [src]="service.GetImage(ssd)" class="card-img-top" alt="..." />
+          </a>
+          <div class="card-body">
+            <h5 class="card-title">SSD {{ ssd.make }}</h5>
+            <div class="card-text pb-4">
+              <p>Скорость чтения: {{ ssd.readSpeed }} Mb/s</p>
+              <p>Скорость записи: {{ ssd.writeSpeed }} Mb/s</p>
+              <p>Объем: {{ ssd.capacity }} Gb</p>
+            </div>
+            <h5 class="card-bottom">{{ ssd.price }} USD</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <div class="col-9">
+    <app-right></app-right>
+  </div>
+</div>

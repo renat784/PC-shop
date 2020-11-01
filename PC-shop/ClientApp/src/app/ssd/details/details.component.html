@@ -1,0 +1,116 @@
+<div *ngIf="ssd">
+  <div>
+    <a [routerLink]="['/']">Home</a>
+    <span class="mx-2"> > </span>
+    <a [routerLink]="['/ssd']">SSD</a>
+    <span class="mx-2"> > </span>
+    <a [routerLink]="['/ssd']" [queryParams]="{ make: ssd.make }"
+      >SSD {{ ssd.make }}</a
+    >
+  </div>
+
+  <div class="my-5">
+    <h1>SSD {{ ssd.name }}</h1>
+  </div>
+
+  <!-- tab panel -->
+  <div class="row">
+    <div class="col-9">
+      <ul class="nav nav-tabs mb-5" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <a
+            class="nav-link active"
+            id="features-tab"
+            data-toggle="tab"
+            href="#features"
+            role="tab"
+            aria-controls="features"
+            aria-selected="true"
+            >Характеристики</a
+          >
+        </li>
+        <li class="nav-item" role="presentation">
+          <a
+            class="nav-link"
+            id="photo-tab"
+            data-toggle="tab"
+            href="#photo"
+            role="tab"
+            aria-controls="photo"
+            aria-selected="false"
+            >Фото</a
+          >
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div
+          class="tab-pane fade show active"
+          id="features"
+          role="tabpanel"
+          aria-labelledby="features-tab"
+        >
+          <div class="row">
+            <ul class="col-4 list-unstyled">
+              <li>Производитель</li>
+              <li>Емкость носителя</li>
+              <li>Скорость чтения</li>
+              <li>Скорость записи</li>
+            </ul>
+            <ul class="col-4 list-unstyled">
+              <li>{{ ssd.make }}</li>
+              <li>{{ ssd.capacity }} Gb</li>
+              <li>{{ ssd.readSpeed }} Mb/s</li>
+              <li>{{ ssd.writeSpeed }} Mb/s</li>
+            </ul>
+          </div>
+
+          <small
+            >* Характеристики и комплектация товара могут изменяться
+            производителем без уведомления</small
+          >
+        </div>
+        <div
+          class="tab-pane fade"
+          id="photo"
+          role="tabpanel"
+          aria-labelledby="photo-tab"
+        >
+          <div>
+            <img
+              width="500"
+              class="my-3"
+              *ngFor="let image of service.GetImages(ssd)"
+              [src]="image"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-3 mt-5">
+      <div class="row">
+        <div class="col-3">
+          <img
+            width="100"
+            [src]="'images/parts/ssd/' + ssd.images.split(';')[0]"
+          />
+        </div>
+        <div class="col-9 text-right">
+          <p>SSD {{ ssd.name }}</p>
+        </div>
+      </div>
+      <div class="my-5">
+        <h3>{{ ssd.price }} USD</h3>
+        <div>
+          <button
+            (click)="service.AddItemToCart(ssd)"
+            data-toggle="modal"
+            data-target="#shoppingCart"
+            class="btn btn-success col-12"
+          >
+            Купить
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

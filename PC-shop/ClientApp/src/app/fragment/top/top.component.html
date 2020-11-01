@@ -1,0 +1,36 @@
+<h3>{{ title }}</h3>
+
+<div class="row">
+  <!-- sort -->
+  <div class="offset-7 col-3">
+    <select class="form-control" (change)="SortProducts($event)">
+      <option value="price=asc">От дешевых к дорогим</option>
+      <option value="price=desc">От дорогих к дешевым</option>
+      <option selected value="sort=asc">По порядку</option>
+    </select>
+  </div>
+
+  <!-- toggle view buttons -->
+  <div class="col-2">
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+      <label class="btn btn-secondary">
+        <input
+          type="radio"
+          name="options"
+          (click)="ToggleView($event)"
+          id="small"
+        />
+        Small
+      </label>
+      <label class="btn btn-secondary">
+        <input
+          type="radio"
+          name="options"
+          (click)="ToggleView($event)"
+          id="large"
+        />
+        Large
+      </label>
+    </div>
+  </div>
+</div>
