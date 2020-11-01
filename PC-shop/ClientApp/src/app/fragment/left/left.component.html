@@ -140,8 +140,12 @@
   </div>
 </div>
 
-<!--specific for ssd -->
-<div *ngIf="categoryId == service.Category.Ssd">
+<!--specific for ssd and hdd-->
+<div
+  *ngIf="
+    categoryId == service.Category.Ssd || categoryId == service.Category.Hdd
+  "
+>
   <!-- capacity -->
   <div class="mt-5">
     <p>Емкость диска</p>
@@ -182,6 +186,509 @@
           >{{ read.name }} Mb/s</label
         >
         <span class="ml-3">({{ read.count }})</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--specific for keyboard -->
+<div *ngIf="categoryId == service.Category.Keyboard">
+  <!-- способы подключения -->
+  <div class="mt-5">
+    <p>Способ подключения</p>
+    <div>
+      <div
+        *ngFor="let connection of keyboardConnectionTypes"
+        class="custom-control custom-checkbox mr-sm-2 my-2"
+      >
+        <input
+          type="checkbox"
+          class="custom-control-input"
+          id="core_{{ connection.name }}"
+        />
+        <label class="custom-control-label" for="core_{{ connection.name }}">{{
+          connection.name
+        }}</label>
+        <span class="ml-3">({{ connection.count }})</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- интерфейсы подключения -->
+  <div class="mt-5">
+    <p>Интерфейс подключения</p>
+    <div>
+      <div
+        *ngFor="let interface of keyboardInterfaces"
+        class="custom-control custom-checkbox mr-sm-2 my-2"
+      >
+        <input
+          type="checkbox"
+          class="custom-control-input"
+          id="thread_{{ interface.name }}"
+        />
+        <label class="custom-control-label" for="thread_{{ interface.name }}">{{
+          interface.name
+        }}</label>
+        <span class="ml-3">({{ interface.count }})</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- типы клавиатур -->
+  <div class="mt-5">
+    <p>Типы клавиатуры</p>
+    <div>
+      <div
+        *ngFor="let keyboardType of keyboardTypes"
+        class="custom-control custom-checkbox mr-sm-2 my-2"
+      >
+        <input
+          type="checkbox"
+          class="custom-control-input"
+          id="tech_{{ keyboardType.name }}"
+        />
+        <label
+          class="custom-control-label"
+          for="tech_{{ keyboardType.name }}"
+          >{{ keyboardType.name }}</label
+        >
+        <span class="ml-3">({{ keyboardType.count }})</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--specific for monitor -->
+<div *ngIf="categoryId == service.Category.Monitor">
+  <!-- диагонали -->
+  <div class="mt-5">
+    <p>Размер диагонали</p>
+    <div>
+      <div
+        *ngFor="let monitorSize of monitorSizes"
+        class="custom-control custom-checkbox mr-sm-2 my-2"
+      >
+        <input
+          type="checkbox"
+          class="custom-control-input"
+          id="core_{{ monitorSize.name }}"
+        />
+        <label class="custom-control-label" for="core_{{ monitorSize.name }}">{{
+          monitorSize.name
+        }}</label>
+        <span class="ml-3">({{ monitorSize.count }})</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- частота обновления -->
+  <div class="mt-5">
+    <p>Частота обновления</p>
+    <div>
+      <div
+        *ngFor="let monitorFr of monitorFreqs"
+        class="custom-control custom-checkbox mr-sm-2 my-2"
+      >
+        <input
+          type="checkbox"
+          class="custom-control-input"
+          id="thread_{{ monitorFr.name }}"
+        />
+        <label class="custom-control-label" for="thread_{{ monitorFr.name }}"
+          >{{ monitorFr.name }} Гц</label
+        >
+        <span class="ml-3">({{ monitorFr.count }})</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- разрешение экрана -->
+  <div class="mt-5">
+    <p>Разрешение экрана</p>
+    <div>
+      <div
+        *ngFor="let monitorRes of monitorResolutions"
+        class="custom-control custom-checkbox mr-sm-2 my-2"
+      >
+        <input
+          type="checkbox"
+          class="custom-control-input"
+          id="tech_{{ monitorRes.name }}"
+        />
+        <label class="custom-control-label" for="tech_{{ monitorRes.name }}">{{
+          monitorRes.name
+        }}</label>
+        <span class="ml-3">({{ monitorRes.count }})</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- типы матрицы-->
+  <div class="mt-5">
+    <p>Типы матрицы</p>
+    <div>
+      <div
+        *ngFor="let monitorMatr of monitorMatrixes"
+        class="custom-control custom-checkbox mr-sm-2 my-2"
+      >
+        <input
+          type="checkbox"
+          class="custom-control-input"
+          id="tech_{{ monitorMatr.name }}"
+        />
+        <label class="custom-control-label" for="tech_{{ monitorMatr.name }}">{{
+          monitorMatr.name
+        }}</label>
+        <span class="ml-3">({{ monitorMatr.count }})</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- соотношения сторон-->
+  <div class="mt-5">
+    <p>Соотношение сторон</p>
+    <div>
+      <div
+        *ngFor="let monitorAsp of monitorAspectRatios"
+        class="custom-control custom-checkbox mr-sm-2 my-2"
+      >
+        <input
+          type="checkbox"
+          class="custom-control-input"
+          id="tech_{{ monitorAsp.name }}"
+        />
+        <label class="custom-control-label" for="tech_{{ monitorAsp.name }}">{{
+          monitorAsp.name
+        }}</label>
+        <span class="ml-3">({{ monitorAsp.count }})</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--specific for motherboard -->
+<div *ngIf="categoryId == service.Category.Motherboard">
+  <!-- сокеты -->
+  <div class="mt-5">
+    <p>Типы сокета</p>
+    <div>
+      <div
+        *ngFor="let socket of motherBoardSockets"
+        class="custom-control custom-checkbox mr-sm-2 my-2"
+      >
+        <input
+          type="checkbox"
+          class="custom-control-input"
+          id="core_{{ socket.name }}"
+        />
+        <label class="custom-control-label" for="core_{{ socket.name }}">{{
+          socket.name
+        }}</label>
+        <span class="ml-3">({{ socket.count }})</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- форм фактор -->
+  <div class="mt-5">
+    <p>Форм фактор</p>
+    <div>
+      <div
+        *ngFor="let factor of motherBoardFormFactors"
+        class="custom-control custom-checkbox mr-sm-2 my-2"
+      >
+        <input
+          type="checkbox"
+          class="custom-control-input"
+          id="thread_{{ factor.name }}"
+        />
+        <label class="custom-control-label" for="thread_{{ factor.name }}"
+          >{{ factor.name }} Гц</label
+        >
+        <span class="ml-3">({{ factor.count }})</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- поддержка памяти-->
+  <div class="mt-5">
+    <p>Поддержка памяти</p>
+    <div>
+      <div
+        *ngFor="let memory of motherBoardMemories"
+        class="custom-control custom-checkbox mr-sm-2 my-2"
+      >
+        <input
+          type="checkbox"
+          class="custom-control-input"
+          id="tech_{{ memory.name }}"
+        />
+        <label class="custom-control-label" for="tech_{{ memory.name }}">{{
+          memory.name
+        }}</label>
+        <span class="ml-3">({{ memory.count }})</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- видео выход-->
+  <div class="mt-5">
+    <p>Видео выход</p>
+    <div>
+      <div
+        *ngFor="let video of motherBoardVideos"
+        class="custom-control custom-checkbox mr-sm-2 my-2"
+      >
+        <input
+          type="checkbox"
+          class="custom-control-input"
+          id="tech_{{ video.name }}"
+        />
+        <label class="custom-control-label" for="tech_{{ video.name }}">{{
+          video.name
+        }}</label>
+        <span class="ml-3">({{ video.count }})</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--specific for mouse-->
+<div *ngIf="categoryId == service.Category.Mouse">
+  <!-- способы подключения -->
+  <div class="mt-5">
+    <p>Способ подключения</p>
+    <div>
+      <div
+        *ngFor="let connection of mouseConnectionTypes"
+        class="custom-control custom-checkbox mr-sm-2 my-2"
+      >
+        <input
+          type="checkbox"
+          class="custom-control-input"
+          id="core_{{ connection.name }}"
+        />
+        <label class="custom-control-label" for="core_{{ connection.name }}">{{
+          connection.name
+        }}</label>
+        <span class="ml-3">({{ connection.count }})</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- интерфейсы подключения -->
+  <div class="mt-5">
+    <p>Интерфейс подключения</p>
+    <div>
+      <div
+        *ngFor="let interface of mouseInterfaces"
+        class="custom-control custom-checkbox mr-sm-2 my-2"
+      >
+        <input
+          type="checkbox"
+          class="custom-control-input"
+          id="thread_{{ interface.name }}"
+        />
+        <label class="custom-control-label" for="thread_{{ interface.name }}">{{
+          interface.name
+        }}</label>
+        <span class="ml-3">({{ interface.count }})</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- размер мышки -->
+  <div class="mt-5">
+    <p>Размер мышки</p>
+    <div>
+      <div
+        *ngFor="let size of mouseSizes"
+        class="custom-control custom-checkbox mr-sm-2 my-2"
+      >
+        <input
+          type="checkbox"
+          class="custom-control-input"
+          id="tech_{{ size.name }}"
+        />
+        <label class="custom-control-label" for="tech_{{ size.name }}">{{
+          size.name
+        }}</label>
+        <span class="ml-3">({{ size.count }})</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- назначение-->
+  <div class="mt-5">
+    <p>Назначение</p>
+    <div>
+      <div
+        *ngFor="let purpose of mousePurposes"
+        class="custom-control custom-checkbox mr-sm-2 my-2"
+      >
+        <input
+          type="checkbox"
+          class="custom-control-input"
+          id="tech_{{ purpose.name }}"
+        />
+        <label class="custom-control-label" for="tech_{{ purpose.name }}">{{
+          purpose.name
+        }}</label>
+        <span class="ml-3">({{ purpose.count }})</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--specific for ram-->
+<div *ngIf="categoryId == service.Category.Ram">
+  <!-- Объем памяти -->
+  <div class="mt-5">
+    <p>Объем памяти</p>
+    <div>
+      <div
+        *ngFor="let capacity of ramCapacities"
+        class="custom-control custom-checkbox mr-sm-2 my-2"
+      >
+        <input
+          type="checkbox"
+          class="custom-control-input"
+          id="core_{{ capacity.name }}"
+        />
+        <label class="custom-control-label" for="core_{{ capacity.name }}"
+          >{{ capacity.name }} Гб</label
+        >
+        <span class="ml-3">({{ capacity.count }})</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Тип памяти -->
+  <div class="mt-5">
+    <p>Тип памяти</p>
+    <div>
+      <div
+        *ngFor="let memory of ramMemoryTypes"
+        class="custom-control custom-checkbox mr-sm-2 my-2"
+      >
+        <input
+          type="checkbox"
+          class="custom-control-input"
+          id="thread_{{ memory.name }}"
+        />
+        <label class="custom-control-label" for="thread_{{ memory.name }}">{{
+          memory.name
+        }}</label>
+        <span class="ml-3">({{ memory.count }})</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Частота памяти -->
+  <div class="mt-5">
+    <p>Частота памяти</p>
+    <div>
+      <div
+        *ngFor="let freq of ramFrequncies"
+        class="custom-control custom-checkbox mr-sm-2 my-2"
+      >
+        <input
+          type="checkbox"
+          class="custom-control-input"
+          id="tech_{{ freq.name }}"
+        />
+        <label class="custom-control-label" for="tech_{{ freq.name }}"
+          >{{ freq.name }} ГГц</label
+        >
+        <span class="ml-3">({{ freq.count }})</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- назначение-->
+  <div class="mt-5">
+    <p>Назначение</p>
+    <div>
+      <div
+        *ngFor="let purpose of ramPurposes"
+        class="custom-control custom-checkbox mr-sm-2 my-2"
+      >
+        <input
+          type="checkbox"
+          class="custom-control-input"
+          id="tech_{{ purpose.name }}"
+        />
+        <label class="custom-control-label" for="tech_{{ purpose.name }}">{{
+          purpose.name
+        }}</label>
+        <span class="ml-3">({{ purpose.count }})</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--specific for video card-->
+<div *ngIf="categoryId == service.Category.Videocard">
+  <!-- Объем памяти -->
+  <div class="mt-5">
+    <p>Объем памяти</p>
+    <div>
+      <div
+        *ngFor="let capacity of videoCardMemorySizes"
+        class="custom-control custom-checkbox mr-sm-2 my-2"
+      >
+        <input
+          type="checkbox"
+          class="custom-control-input"
+          id="core_{{ capacity.name }}"
+        />
+        <label class="custom-control-label" for="core_{{ capacity.name }}"
+          >{{ capacity.name }} Гб</label
+        >
+        <span class="ml-3">({{ capacity.count }})</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Тип памяти -->
+  <div class="mt-5">
+    <p>Тип памяти</p>
+    <div>
+      <div
+        *ngFor="let memory of videoCardMemoryTypes"
+        class="custom-control custom-checkbox mr-sm-2 my-2"
+      >
+        <input
+          type="checkbox"
+          class="custom-control-input"
+          id="thread_{{ memory.name }}"
+        />
+        <label class="custom-control-label" for="thread_{{ memory.name }}">{{
+          memory.name
+        }}</label>
+        <span class="ml-3">({{ memory.count }})</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- назначение-->
+  <div class="mt-5">
+    <p>Назначение</p>
+    <div>
+      <div
+        *ngFor="let purpose of videoCardPurposes"
+        class="custom-control custom-checkbox mr-sm-2 my-2"
+      >
+        <input
+          type="checkbox"
+          class="custom-control-input"
+          id="tech_{{ purpose.name }}"
+        />
+        <label class="custom-control-label" for="tech_{{ purpose.name }}">{{
+          purpose.name
+        }}</label>
+        <span class="ml-3">({{ purpose.count }})</span>
       </div>
     </div>
   </div>

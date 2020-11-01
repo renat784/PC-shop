@@ -14,8 +14,6 @@ namespace PC_shop.Models
         public string Socket { get; set; }
         public string FormFactor { get; set; }
         public string MemorySupport { get; set; }
-
-        public bool IntegratedVideoCard { get; set; }
         public string VideoExit { get; set; }
         public int Price { get; set; }
         public string Make { get; set; }

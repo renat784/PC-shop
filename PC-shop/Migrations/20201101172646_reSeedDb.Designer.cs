@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PC_shop.Data;
 
 namespace PC_shop.Migrations
 {
     [DbContext(typeof(PC_shopContext))]
-    partial class PC_shopContextModelSnapshot : ModelSnapshot
+    [Migration("20201101172646_reSeedDb")]
+    partial class reSeedDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
