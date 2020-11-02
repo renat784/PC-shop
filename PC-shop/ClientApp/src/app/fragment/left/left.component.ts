@@ -56,6 +56,36 @@ export class LeftComponent implements OnInit {
 
   constructor(public service: GetDataService, private route: ActivatedRoute) {}
 
+  // when user presses backspace to correct input value
+  MakesFilterBackspace(e: string) {
+    if (this.makes.length == 0) {
+      this.makes = this.GetUniques("make");
+    }
+    e = e.trim();
+    let length = e.length;
+    let result = e.slice(0, length - 1);
+    this.MakesFilter(result);
+  }
+
+  // displaying only options by user input
+  MakesFilter(value) {
+    value = value.trim();
+    if (value == "") {
+      this.makes = this.GetUniques("make");
+    }
+
+    let data = [];
+    this.makes.forEach((i) => {
+      let name = i.name;
+      let match = (name as string).toLowerCase().match(value);
+      if (match) {
+        data.push(i);
+      }
+    });
+    this.makes = data;
+    console.log(data);
+  }
+
   GetUniques(propertyName) {
     let uniqs = new Set();
     this.products.map((i) => uniqs.add(i[propertyName]));

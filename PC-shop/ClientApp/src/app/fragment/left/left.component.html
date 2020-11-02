@@ -3,8 +3,15 @@
     <span>Производитель</span>
     <span class="ml-2">{{ makes.length }}</span>
   </p>
+  <!-- makes filter -->
   <div>
-    <input class="form-control" type="text" placeholder="Поиск" />
+    <input
+      (input)="MakesFilter($event.target.value)"
+      (keydown.Backspace)="MakesFilterBackspace($event.target.value)"
+      class="form-control"
+      type="text"
+      placeholder="Поиск"
+    />
   </div>
 </div>
 
