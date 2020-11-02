@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { FormControl } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { GetDataService } from "src/app/get-data.service";
 
@@ -13,11 +14,31 @@ export class TopComponent implements OnInit {
   view;
   componentName;
 
+  sortOptions = [];
+
   constructor(
     private router: Router,
     private service: GetDataService,
     private route: ActivatedRoute
-  ) {}
+  ) {
+    this.sortOptions = [
+      {
+        name: "От дешевых к дорогим",
+        value: "price=asc",
+        selected: false,
+      },
+      {
+        name: "От дорогих к дешевым",
+        value: "price=desc",
+        selected: false,
+      },
+      {
+        name: "По порядку",
+        value: "sort=asc",
+        selected: true,
+      },
+    ];
+  }
 
   SortProducts(e) {
     let value = e.target.value;
@@ -53,10 +74,32 @@ export class TopComponent implements OnInit {
     }
   }
 
+  ChangeSelected(sortParam) {
+    let index = this.sortOptions.findIndex((i) => i.value == sortParam);
+    this.sortOptions.map((i) => (i.selected = false));
+    this.sortOptions[index].selected = true;
+  }
+
   ngOnInit() {
     //  get component short name
     let fullName = this.route.routeConfig.component.name.toLowerCase();
     let endIndex = fullName.indexOf("component");
     this.componentName = fullName.slice(0, endIndex);
+
+    // set sort select option from url
+    this.route.queryParams.subscribe((i) => {
+      let sortParam;
+
+      if (i.sort == "asc") {
+        sortParam = "sort=asc";
+        this.ChangeSelected(sortParam);
+      } else if (i.price == "asc") {
+        sortParam = "price=asc";
+        this.ChangeSelected(sortParam);
+      } else if (i.price == "desc") {
+        sortParam = "price=desc";
+        this.ChangeSelected(sortParam);
+      }
+    });
   }
 }

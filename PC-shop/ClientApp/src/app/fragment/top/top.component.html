@@ -4,10 +4,26 @@
   <!-- sort -->
   <div class="offset-7 col-3">
     <select class="form-control" (change)="SortProducts($event)">
-      <option value="price=asc">От дешевых к дорогим</option>
-      <option value="price=desc">От дорогих к дешевым</option>
-      <option selected value="sort=asc">По порядку</option>
+      <option
+        *ngFor="let option of sortOptions"
+        [selected]="option.selected"
+        [value]="option.value"
+      >
+        {{ option.name }}
+      </option>
     </select>
+
+    <!-- <select class="form-control" (change)="SortProducts($event)">
+      <option [selected]="sortParam == 'price=asc'" value="price=asc">
+        От дешевых к дорогим
+      </option>
+      <option [selected]="sortParam == 'price=desc'" value="price=desc">
+        От дорогих к дешевым
+      </option>
+      <option [selected]="sortParam == 'sort=asc'" value="sort=asc">
+        По порядку
+      </option>
+    </select> -->
   </div>
 
   <!-- toggle view buttons -->

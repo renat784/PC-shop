@@ -23,7 +23,6 @@ export class RightComponent implements OnInit {
   ) {}
 
   Sort(query) {
-    console.log(query);
     switch (query.price) {
       case "asc":
         return this.products.sort((a, b) => a.price - b.price);
@@ -41,8 +40,6 @@ export class RightComponent implements OnInit {
     this.componentName = fullName.slice(0, endIndex);
 
     this.categoryId = this.service.GetCategoryId(this.componentName);
-
-    console.log(this.componentName);
 
     this.service.GetProductList(this.categoryId).subscribe((i) => {
       this.products = i;
