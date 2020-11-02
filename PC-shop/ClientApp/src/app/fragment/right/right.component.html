@@ -1,7 +1,7 @@
 <!--right part - products-->
 <div>
   <div class="row">
-    <div class="col-3 my-3 px-0" *ngFor="let product of products">
+    <div [ngClass]="view" class="my-3 px-0" *ngFor="let product of products">
       <div class="card">
         <a [routerLink]="['/details/' + product.categoryId + '/' + product.id]">
           <img

@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-cpu',
-  templateUrl: './cpu.component.html',
-  styleUrls: ['./cpu.component.css']
+  selector: "app-cpu",
+  templateUrl: "./cpu.component.html",
+  styleUrls: ["./cpu.component.css"],
 })
 export class CpuComponent implements OnInit {
+  view;
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
+  GetView(e) {
+    this.view = e;
   }
-
+  ngOnInit() {}
 }

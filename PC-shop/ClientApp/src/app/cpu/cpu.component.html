@@ -1,9 +1,9 @@
-<app-top [title]="'Процессоры'"></app-top>
+<app-top (viewChanged)="GetView($event)" [title]="'Процессоры'"></app-top>
 <div class="row">
   <div class="col-3">
     <app-left></app-left>
   </div>
   <div class="col-9">
-    <app-right></app-right>
+    <app-right [view]="view"></app-right>
   </div>
 </div>

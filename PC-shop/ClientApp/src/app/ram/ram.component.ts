@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-ram',
-  templateUrl: './ram.component.html',
-  styleUrls: ['./ram.component.css']
+  selector: "app-ram",
+  templateUrl: "./ram.component.html",
+  styleUrls: ["./ram.component.css"],
 })
 export class RamComponent implements OnInit {
+  view;
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
+  GetView(e) {
+    this.view = e;
   }
-
+  ngOnInit() {}
 }

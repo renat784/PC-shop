@@ -12,41 +12,29 @@
         {{ option.name }}
       </option>
     </select>
-
-    <!-- <select class="form-control" (change)="SortProducts($event)">
-      <option [selected]="sortParam == 'price=asc'" value="price=asc">
-        От дешевых к дорогим
-      </option>
-      <option [selected]="sortParam == 'price=desc'" value="price=desc">
-        От дорогих к дешевым
-      </option>
-      <option [selected]="sortParam == 'sort=asc'" value="sort=asc">
-        По порядку
-      </option>
-    </select> -->
   </div>
 
   <!-- toggle view buttons -->
   <div class="col-2">
-    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-      <label class="btn btn-secondary">
-        <input
-          type="radio"
-          name="options"
-          (click)="ToggleView($event)"
-          id="small"
-        />
+    <div class="btn-group" role="group">
+      <button
+        type="button"
+        (click)="ToggleView($event)"
+        id="small"
+        [ngClass]="{ active: view == 'col-3' }"
+        class="btn btn-secondary"
+      >
         Small
-      </label>
-      <label class="btn btn-secondary">
-        <input
-          type="radio"
-          name="options"
-          (click)="ToggleView($event)"
-          id="large"
-        />
+      </button>
+      <button
+        type="button"
+        (click)="ToggleView($event)"
+        id="large"
+        [ngClass]="{ active: view == 'col-4' }"
+        class="btn btn-secondary"
+      >
         Large
-      </label>
+      </button>
     </div>
   </div>
 </div>

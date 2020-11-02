@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Inject, Injectable } from "@angular/core";
+import { Observable } from "rxjs";
 
 // use instead of categoryId
 export enum Category {
@@ -219,16 +220,4 @@ export class GetDataService {
   getViewPref() {
     return JSON.parse(localStorage.getItem("pref"));
   }
-
-  // sort Products
-  // SortProducts(array, queryParam) {
-  //   switch (queryParam) {
-  //     case "price=asc":
-  //       console.log(queryParam);
-  //       return (array as Cpu[]).sort((a, b) => a.price - b.price);
-  //     case "price=desc":
-  //       console.log(queryParam);
-  //       return (array as Cpu[]).sort((a, b) => b.price - a.price);
-  //   }
-  // }
 }

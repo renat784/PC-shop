@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import {
   Category,
   CategoryName,
@@ -16,6 +16,7 @@ export class RightComponent implements OnInit {
   categoryId;
   products;
   componentName;
+  @Input() view;
   constructor(
     public service: GetDataService,
     private router: Router,
@@ -34,6 +35,9 @@ export class RightComponent implements OnInit {
   }
 
   ngOnInit() {
+    //  get view pref for products
+    this.view = this.service.getViewPref().view;
+
     //  get component short name
     let fullName = this.route.routeConfig.component.name.toLowerCase();
     let endIndex = fullName.indexOf("component");
@@ -47,7 +51,6 @@ export class RightComponent implements OnInit {
       // sort products
       this.route.queryParams.subscribe((i) => {
         if (Object.keys(i).length == 0) {
-          console.log("no params");
         } else {
           this.products = this.Sort(i);
         }

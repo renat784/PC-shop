@@ -64,14 +64,18 @@ export class TopComponent implements OnInit {
   ToggleView(e) {
     switch (e.target.id) {
       case "small":
-        this.viewChanged.emit("col-3");
-        this.service.setViewPref({ view: "col-3" });
+        this.view = "col-3";
+        this.viewChanged.emit(this.view);
+        this.service.setViewPref({ view: this.view });
         break;
       case "large":
-        this.viewChanged.emit("col-4");
-        this.service.setViewPref({ view: "col-4" });
+        this.view = "col-4";
+        this.viewChanged.emit(this.view);
+        this.service.setViewPref({ view: this.view });
         break;
     }
+    // this.router.navigate([this.componentName], {queryParams: {}});
+    // console.log("clicked");
   }
 
   ChangeSelected(sortParam) {
@@ -81,6 +85,10 @@ export class TopComponent implements OnInit {
   }
 
   ngOnInit() {
+    // add active class to view toggle
+    this.view = this.service.getViewPref().view;
+    console.log(this.view);
+
     //  get component short name
     let fullName = this.route.routeConfig.component.name.toLowerCase();
     let endIndex = fullName.indexOf("component");
