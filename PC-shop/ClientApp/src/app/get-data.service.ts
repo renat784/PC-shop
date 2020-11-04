@@ -217,7 +217,10 @@ export class GetDataService {
     localStorage.setItem("pref", JSON.stringify(pref));
   }
 
+  //    { view: 'col-3' }
   getViewPref() {
-    return JSON.parse(localStorage.getItem("pref"));
+    let pref = localStorage.getItem("pref");
+    if (pref) return JSON.parse(pref);
+    else return { view: "col-3" };
   }
 }

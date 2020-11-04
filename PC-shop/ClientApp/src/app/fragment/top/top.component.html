@@ -1,8 +1,17 @@
 <h3>{{ title }}</h3>
-
+<!-- total count and reset filter button -->
 <div class="row">
-  <!-- sort -->
-  <div class="offset-7 col-3">
+  <div class="col-7">
+    <span class="offset-5">Выбрано {{ count }} товаров</span>
+    <a
+      *ngIf="showReset"
+      class="btn btn-success ml-5"
+      [routerLink]="['/' + componentName]"
+      >Сбросить</a
+    >
+  </div>
+  <!-- sort select-->
+  <div class="col-3">
     <select class="form-control" (change)="SortProducts($event)">
       <option
         *ngFor="let option of sortOptions"

@@ -10,10 +10,11 @@ import { GetDataService } from "src/app/get-data.service";
 })
 export class TopComponent implements OnInit {
   @Input() title;
+  @Input() count;
   @Output() viewChanged = new EventEmitter<string>();
   view;
   componentName;
-
+  showReset;
   sortOptions = [];
 
   constructor(
@@ -24,17 +25,17 @@ export class TopComponent implements OnInit {
     this.sortOptions = [
       {
         name: "От дешевых к дорогим",
-        value: "price=asc",
+        value: "price_asc",
         selected: false,
       },
       {
         name: "От дорогих к дешевым",
-        value: "price=desc",
+        value: "price_desc",
         selected: false,
       },
       {
         name: "По порядку",
-        value: "sort=asc",
+        value: "asc",
         selected: true,
       },
     ];
@@ -42,23 +43,52 @@ export class TopComponent implements OnInit {
 
   SortProducts(e) {
     let value = e.target.value;
-    switch (value) {
-      case "price=asc":
-        this.router.navigate(["/" + this.componentName], {
-          queryParams: { price: "asc" },
-        });
-        break;
-      case "price=desc":
-        this.router.navigate(["/" + this.componentName], {
-          queryParams: { price: "desc" },
-        });
-        break;
-      case "sort=asc":
-        this.router.navigate(["/" + this.componentName], {
-          queryParams: { sort: "asc" },
-        });
-        break;
-    }
+    let query;
+    this.route.queryParams.subscribe((i) => {
+      query = { ...i };
+
+      console.log(query);
+      if (query.sort) {
+        switch (value) {
+          case "price_asc":
+            query.sort = "price_asc";
+            this.router.navigate(["/" + this.componentName], {
+              queryParams: query,
+            });
+            break;
+          case "price_desc":
+            query.sort = "price_desc";
+            this.router.navigate(["/" + this.componentName], {
+              queryParams: query,
+            });
+            break;
+          case "asc":
+            query.sort = "asc";
+            this.router.navigate(["/" + this.componentName], {
+              queryParams: query,
+            });
+            break;
+        }
+      } else {
+        switch (value) {
+          case "price_asc":
+            this.router.navigate(["/" + this.componentName], {
+              queryParams: { ...query, sort: "price_asc" },
+            });
+            break;
+          case "price_desc":
+            this.router.navigate(["/" + this.componentName], {
+              queryParams: { ...query, sort: "price_desc" },
+            });
+            break;
+          case "asc":
+            this.router.navigate(["/" + this.componentName], {
+              queryParams: { ...query, sort: "asc" },
+            });
+            break;
+        }
+      }
+    });
   }
 
   ToggleView(e) {
@@ -85,9 +115,20 @@ export class TopComponent implements OnInit {
   }
 
   ngOnInit() {
+    // show or hide reset filter button
+    this.route.queryParams.subscribe((i) => {
+      if (
+        Object.keys(i).length == 0 ||
+        (Object.keys(i).length == 1 && i.sort)
+      ) {
+        this.showReset = false;
+      } else {
+        this.showReset = true;
+      }
+    });
+
     // add active class to view toggle
     this.view = this.service.getViewPref().view;
-    console.log(this.view);
 
     //  get component short name
     let fullName = this.route.routeConfig.component.name.toLowerCase();
@@ -98,16 +139,30 @@ export class TopComponent implements OnInit {
     this.route.queryParams.subscribe((i) => {
       let sortParam;
 
-      if (i.sort == "asc") {
-        sortParam = "sort=asc";
-        this.ChangeSelected(sortParam);
-      } else if (i.price == "asc") {
-        sortParam = "price=asc";
-        this.ChangeSelected(sortParam);
-      } else if (i.price == "desc") {
-        sortParam = "price=desc";
-        this.ChangeSelected(sortParam);
+      switch (i.sort) {
+        case "asc":
+          sortParam = "asc";
+          this.ChangeSelected(sortParam);
+          break;
+        case "price_asc":
+          sortParam = "price_asc";
+          this.ChangeSelected(sortParam);
+          break;
+        case "price_desc":
+          sortParam = "price_desc";
+          this.ChangeSelected(sortParam);
+          break;
       }
+      // if (i.sort == "asc") {
+      //   sortParam = "sort=asc";
+      //   this.ChangeSelected(sortParam);
+      // } else if (i.price == "asc") {
+      //   sortParam = "price=asc";
+      //   this.ChangeSelected(sortParam);
+      // } else if (i.price == "desc") {
+      //   sortParam = "price=desc";
+      //   this.ChangeSelected(sortParam);
+      // }
     });
   }
 }

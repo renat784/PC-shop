@@ -7,10 +7,19 @@ import { Component, OnInit } from "@angular/core";
 })
 export class CpuComponent implements OnInit {
   view;
+  productsUpdated;
+  countOfProducts = 0;
   constructor() {}
 
-  GetView(e) {
-    this.view = e;
+  GetView(view) {
+    this.view = view;
   }
+
+  GetCount(count) {
+    this.countOfProducts = count;
+  }
+
+  ProductsChanged(e) {}
+
   ngOnInit() {}
 }
