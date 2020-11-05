@@ -1,8 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { of } from "rxjs";
-import { max, min } from "rxjs/operators";
-import { Category, GetDataService } from "../get-data.service";
-import { Ssd } from "../Models/Ssd";
+import { productsEvent } from "../get-data.service";
 
 @Component({
   selector: "app-ssd",
@@ -11,10 +8,24 @@ import { Ssd } from "../Models/Ssd";
 })
 export class SsdComponent implements OnInit {
   view;
+  countOfProducts = 0;
+
   constructor() {}
 
-  GetView(e) {
-    this.view = e;
+  // large or small
+  GetView(view) {
+    this.view = view;
   }
+
+  // count of products
+  GetCount(count) {
+    this.countOfProducts = count;
+  }
+
+  // notice left component about product list changes
+  GetProducts(e) {
+    productsEvent.emit(e);
+  }
+
   ngOnInit() {}
 }

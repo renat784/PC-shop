@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { productsEvent } from "../get-data.service";
 
 @Component({
   selector: "app-keyboard",
@@ -7,10 +8,24 @@ import { Component, OnInit } from "@angular/core";
 })
 export class KeyboardComponent implements OnInit {
   view;
+  countOfProducts = 0;
+
   constructor() {}
 
-  GetView(e) {
-    this.view = e;
+  // large or small
+  GetView(view) {
+    this.view = view;
   }
+
+  // count of products
+  GetCount(count) {
+    this.countOfProducts = count;
+  }
+
+  // notice left component about product list changes
+  GetProducts(e) {
+    productsEvent.emit(e);
+  }
+
   ngOnInit() {}
 }

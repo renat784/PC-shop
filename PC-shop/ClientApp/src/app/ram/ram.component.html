@@ -1,5 +1,6 @@
 <app-top
   (viewChanged)="GetView($event)"
+  [count]="countOfProducts"
   [title]="'Оперативная память'"
 ></app-top>
 <div class="row">
@@ -7,6 +8,10 @@
     <app-left></app-left>
   </div>
   <div class="col-9">
-    <app-right [view]="view"></app-right>
+    <app-right
+      [view]="view"
+      (productsChanged)="GetProducts($event)"
+      (countChanged)="GetCount($event)"
+    ></app-right>
   </div>
 </div>

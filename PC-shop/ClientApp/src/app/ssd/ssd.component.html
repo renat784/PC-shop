@@ -1,9 +1,17 @@
-<app-top (viewChanged)="GetView($event)" [title]="'SSD диски'"></app-top>
+<app-top
+  (viewChanged)="GetView($event)"
+  [count]="countOfProducts"
+  [title]="'SSD диски'"
+></app-top>
 <div class="row">
   <div class="col-3">
     <app-left></app-left>
   </div>
   <div class="col-9">
-    <app-right [view]="view"></app-right>
+    <app-right
+      [view]="view"
+      (productsChanged)="GetProducts($event)"
+      (countChanged)="GetCount($event)"
+    ></app-right>
   </div>
 </div>

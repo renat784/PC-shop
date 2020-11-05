@@ -100,6 +100,22 @@ export class RightComponent implements OnInit {
       this.QueryUrl("make");
     }
 
+    console.log(query);
+
+    if (query.price) {
+      console.log(this.productsSorted);
+
+      let prices = query.price.split("-");
+      let min = parseInt(prices[0]);
+      let max = parseInt(prices[1]);
+
+      let some = [];
+      this.productsSorted.map((i) => {
+        if (i.price >= min && i.price <= max) some.push(i);
+      });
+      this.productsSorted = some;
+    }
+
     // specific for cpu:
     if (this.componentName == "cpu") {
       console.log(this.productsSorted);
@@ -118,6 +134,141 @@ export class RightComponent implements OnInit {
 
       if (query.techProcess) {
         this.QueryUrl("techProcess");
+      }
+    }
+
+    // specific for hdd and ssd:
+    if (this.componentName == "hdd" || this.componentName == "ssd") {
+      console.log(this.productsSorted);
+
+      if (query.capacity) {
+        this.QueryUrl("capacity");
+      }
+
+      if (query.readSpeed) {
+        this.QueryUrl("readSpeed");
+      }
+    }
+
+    // specific for keyboard:
+    if (this.componentName == "keyboard") {
+      console.log(this.productsSorted);
+
+      if (query.connectionType) {
+        this.QueryUrl("connectionType");
+      }
+
+      if (query.interface) {
+        this.QueryUrl("interface");
+      }
+
+      if (query.type) {
+        this.QueryUrl("type");
+      }
+    }
+
+    // specific for monitor:
+    if (this.componentName == "monitor") {
+      console.log(this.productsSorted);
+
+      if (query.size) {
+        this.QueryUrl("size");
+      }
+
+      if (query.frequency) {
+        this.QueryUrl("frequency");
+      }
+
+      if (query.resolution) {
+        this.QueryUrl("resolution");
+      }
+
+      if (query.matrixType) {
+        this.QueryUrl("matrixType");
+      }
+
+      if (query.aspectRatio) {
+        this.QueryUrl("aspectRatio");
+      }
+    }
+
+    // specific for motherboard:
+    if (this.componentName == "motherboard") {
+      console.log(this.productsSorted);
+
+      if (query.socket) {
+        this.QueryUrl("socket");
+      }
+
+      if (query.formFactor) {
+        this.QueryUrl("formFactor");
+      }
+
+      if (query.memorySupport) {
+        this.QueryUrl("memorySupport");
+      }
+
+      if (query.videoExit) {
+        this.QueryUrl("videoExit");
+      }
+    }
+
+    // specific for mouse:
+    if (this.componentName == "mouse") {
+      console.log(this.productsSorted);
+
+      if (query.connectionType) {
+        this.QueryUrl("connectionType");
+      }
+
+      if (query.interface) {
+        this.QueryUrl("interface");
+      }
+
+      if (query.size) {
+        this.QueryUrl("size");
+      }
+
+      if (query.purpose) {
+        this.QueryUrl("purpose");
+      }
+    }
+
+    // specific for ram:
+    if (this.componentName == "ram") {
+      console.log(this.productsSorted);
+
+      if (query.capacity) {
+        this.QueryUrl("capacity");
+      }
+
+      if (query.memoryType) {
+        this.QueryUrl("memoryType");
+      }
+
+      if (query.frequency) {
+        this.QueryUrl("frequency");
+      }
+
+      if (query.purpose) {
+        this.QueryUrl("purpose");
+      }
+    }
+
+    // specific for videocard:
+    if (this.componentName == "videocard") {
+      console.log(this.productsSorted);
+
+      if (query.memorySize) {
+        this.QueryUrl("memorySize");
+      }
+
+      if (query.memoryType) {
+        this.QueryUrl("memoryType");
+      }
+
+      if (query.purpose) {
+        this.QueryUrl("purpose");
       }
     }
 
@@ -165,7 +316,11 @@ export class RightComponent implements OnInit {
         }
 
         console.log(this.productsSorted);
+        // send data to top component
         this.countChanged.emit(this.productsSorted.length);
+        // send data to right component
+
+        this.productsChanged.emit(this.productsSorted);
       });
     });
   }

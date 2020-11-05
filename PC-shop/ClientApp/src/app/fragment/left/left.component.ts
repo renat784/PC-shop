@@ -1,5 +1,11 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { Category, GetDataService } from "src/app/get-data.service";
+import { Component, OnInit } from "@angular/core";
+
+import {
+  Category,
+  GetDataService,
+  productsEvent,
+} from "src/app/get-data.service";
+
 import { ActivatedRoute, Router } from "@angular/router";
 import { of } from "rxjs";
 import { max, min } from "rxjs/operators";
@@ -10,7 +16,7 @@ import { max, min } from "rxjs/operators";
   styleUrls: ["./left.component.css"],
 })
 export class LeftComponent implements OnInit {
-  @Input() productsUpdated;
+  // common props:
   products;
   productsCopy;
   componentName;
@@ -19,40 +25,40 @@ export class LeftComponent implements OnInit {
   makes = [];
   categoryId;
   queryParams;
-  // cpu props:
+  // extra cpu props:
   cpu_cores = [];
   cpu_threads = [];
   cpu_graphics = [];
   cpu_techs = [];
-  // ssd and hdd props:
+  // extra ssd and hdd props:
   disk_capacities = [];
   disk_readSpeeds = [];
-  // keyBoard props:
+  // extra keyBoard props:
   keyboard_ConnectionTypes = [];
   keyboard_Types = [];
   keyboard_Interfaces = [];
-  // monitor props:
+  // extra monitor props:
   monitor_Sizes = [];
   monitor_Freqs = [];
   monitor_Resolutions = [];
   monitor_Matrixes = [];
   monitor_AspectRatios = [];
-  // motheboard props:
+  // extra motheboard props:
   motherBoard_Sockets = [];
   motherBoard_FormFactors = [];
   motherBoard_Memories = [];
   motherBoard_Videos = [];
-  // mouse props:
+  // extra mouse props:
   mouse_ConnectionTypes = [];
   mouse_Sizes = [];
   mouse_Interfaces = [];
   mouse_Purposes = [];
-  // ram props:
+  // extra ram props:
   ram_Capacities = [];
   ram_MemoryTypes = [];
   ram_Frequncies = [];
   ram_Purposes = [];
-  // videocards props:
+  // extra videocards props:
   videoCard_MemorySizes = [];
   videoCard_MemoryTypes = [];
   videoCard_Purposes = [];
@@ -99,8 +105,20 @@ export class LeftComponent implements OnInit {
 
     let query = { queryParams: this.queryParams };
 
-    // let products = JSON.parse(localStorage.getItem("all"));
-    // console.log(products);
+    this.router.navigate(["/" + this.componentName], query);
+  }
+
+  PriceRangeChanged() {
+    let query = { queryParams: this.queryParams };
+
+    // if (this.queryParams["price"]) {
+    //   let prices = this.queryParams["price"].split("-");
+    //   this.queryParams.price = prices[0] + "-" + prices[1];
+    // } else {
+    //   this.queryParams.price = this.priceMin + "-" + this.priceMax;
+    // }
+    this.queryParams.price = this.priceMin + "-" + this.priceMax;
+    console.log(this.queryParams);
 
     this.router.navigate(["/" + this.componentName], query);
   }
@@ -147,8 +165,6 @@ export class LeftComponent implements OnInit {
   ) {}
 
   ReBuildControls() {
-    console.log("rebuild");
-
     // get unique makes and their count
     this.makes = this.GetUniques("make");
 
@@ -176,21 +192,6 @@ export class LeftComponent implements OnInit {
 
       // with integrated graphics or not and their count
       this.cpu_graphics = this.GetUniques("graphics");
-      // let count = this.products.filter((i) => i.graphics === "Нет").length;
-
-      // this.cpu_graphics.push({
-      //   name: "Без интегрированной графики",
-      //   count: count,
-      //   checked: false,
-      // });
-
-      // let countWithGraphics = this.products.length - count;
-
-      // this.cpu_graphics.push({
-      //   name: "С интегрированной графикой",
-      //   count: countWithGraphics,
-      //   checked: false,
-      // });
 
       // get unique techProcesses and their count
       this.cpu_techs = this.GetUniques("techProcess");
@@ -235,13 +236,13 @@ export class LeftComponent implements OnInit {
       this.keyboard_Types = this.GetUniques("type");
 
       // set 'connection types' checked checkboxes from url
-      this.SetCheckboxes(this.keyboard_ConnectionTypes, "keyBoardConnection");
+      this.SetCheckboxes(this.keyboard_ConnectionTypes, "connectionType");
 
       // set 'interfaces' checked checkboxes from url
-      this.SetCheckboxes(this.keyboard_Interfaces, "keyBoardInterface");
+      this.SetCheckboxes(this.keyboard_Interfaces, "interface");
 
       // set 'types' checked checkboxes from url
-      this.SetCheckboxes(this.keyboard_Types, "keyBoardType");
+      this.SetCheckboxes(this.keyboard_Types, "type");
     }
 
     // specific for monitor
@@ -265,16 +266,16 @@ export class LeftComponent implements OnInit {
       this.SetCheckboxes(this.monitor_Sizes, "size");
 
       // set 'frequencies' checked checkboxes from url
-      this.SetCheckboxes(this.monitor_Freqs, "freq");
+      this.SetCheckboxes(this.monitor_Freqs, "frequency");
 
       // set 'resolutions' checked checkboxes from url
-      this.SetCheckboxes(this.monitor_Resolutions, "res");
+      this.SetCheckboxes(this.monitor_Resolutions, "resolution");
 
       // set 'matrix' checked checkboxes from url
-      this.SetCheckboxes(this.monitor_Matrixes, "matrix");
+      this.SetCheckboxes(this.monitor_Matrixes, "matrixType");
 
       // set 'aspect ratio' checked checkboxes from url
-      this.SetCheckboxes(this.monitor_AspectRatios, "aspect");
+      this.SetCheckboxes(this.monitor_AspectRatios, "aspectRatio");
     }
 
     // specific for motherboard
@@ -295,13 +296,13 @@ export class LeftComponent implements OnInit {
       this.SetCheckboxes(this.motherBoard_Sockets, "socket");
 
       // set 'form factor' checked checkboxes from url
-      this.SetCheckboxes(this.motherBoard_FormFactors, "form");
+      this.SetCheckboxes(this.motherBoard_FormFactors, "formFactor");
 
       // set 'memories' checked checkboxes from url
-      this.SetCheckboxes(this.motherBoard_Memories, "memory");
+      this.SetCheckboxes(this.motherBoard_Memories, "memorySupport");
 
       // set 'video' checked checkboxes from url
-      this.SetCheckboxes(this.motherBoard_Videos, "video");
+      this.SetCheckboxes(this.motherBoard_Videos, "videoExit");
     }
 
     // specific for mouse
@@ -318,7 +319,7 @@ export class LeftComponent implements OnInit {
       this.mouse_Purposes = this.GetUniques("purpose");
 
       // set 'connection' checked checkboxes from url
-      this.SetCheckboxes(this.mouse_ConnectionTypes, "con");
+      this.SetCheckboxes(this.mouse_ConnectionTypes, "connectionType");
 
       // set 'interface' checked checkboxes from url
       this.SetCheckboxes(this.mouse_Interfaces, "interface");
@@ -348,10 +349,10 @@ export class LeftComponent implements OnInit {
       this.SetCheckboxes(this.ram_Capacities, "capacity");
 
       // set 'memory' checked checkboxes from url
-      this.SetCheckboxes(this.ram_MemoryTypes, "memory");
+      this.SetCheckboxes(this.ram_MemoryTypes, "memoryType");
 
       // set 'frequencies' checked checkboxes from url
-      this.SetCheckboxes(this.ram_Frequncies, "freq");
+      this.SetCheckboxes(this.ram_Frequncies, "frequency");
 
       // set 'purpose' checked checkboxes from url
       this.SetCheckboxes(this.ram_Purposes, "purpose");
@@ -424,23 +425,27 @@ export class LeftComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("init left");
-
     //  get component short name
     let fullName = this.route.routeConfig.component.name.toLowerCase();
     let endIndex = fullName.indexOf("component");
     this.componentName = fullName.slice(0, endIndex);
 
+    // get category id
     this.categoryId = this.service.GetCategoryId(this.componentName);
 
     this.service.GetProductList(this.categoryId).subscribe((i) => {
       this.products = i;
+      console.log(this.products);
 
       this.route.queryParams.subscribe((i) => {
         this.queryParams = { ...i };
-        this.ReBuildControls();
-        // console.log(this.productsUpdated);
-        // this.products = this.productsUpdated;
+        // when products list in right component changes - we'll change
+        // product list here and rebuild all components
+        productsEvent.subscribe((data) => {
+          console.log(data);
+          this.products = data;
+          this.ReBuildControls();
+        });
       });
     });
   }

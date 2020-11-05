@@ -57,7 +57,13 @@
         name="priceMax"
         class="form-control col-4 ml-1"
       />
-      <button type="submit" class="btn btn-primary col-3 ml-1">Ok</button>
+      <button
+        (click)="PriceRangeChanged()"
+        type="submit"
+        class="btn btn-primary col-3 ml-1"
+      >
+        Ok
+      </button>
     </div>
   </form>
 </div>
@@ -175,11 +181,10 @@
           type="checkbox"
           class="custom-control-input"
           [checked]="capacity.checked"
-          id="ssd_capacity_{{ capacity.name }}"
+          (click)="CheckboxChanged($event, 'capacity')"
+          id="capacity_{{ capacity.name }}"
         />
-        <label
-          class="custom-control-label"
-          for="ssd_capacity_{{ capacity.name }}"
+        <label class="custom-control-label" for="capacity_{{ capacity.name }}"
           >{{ capacity.name }} Gb</label
         >
         <span class="ml-3">({{ capacity.count }})</span>
@@ -199,9 +204,10 @@
           type="checkbox"
           class="custom-control-input"
           [checked]="read.checked"
-          id="ssd_read_{{ read.name }}"
+          (click)="CheckboxChanged($event, 'readSpeed')"
+          id="read_{{ read.name }}"
         />
-        <label class="custom-control-label" for="ssd_read_{{ read.name }}"
+        <label class="custom-control-label" for="read_{{ read.name }}"
           >{{ read.name }} Mb/s</label
         >
         <span class="ml-3">({{ read.count }})</span>
@@ -224,9 +230,10 @@
           type="checkbox"
           class="custom-control-input"
           [checked]="connection.checked"
-          id="core_{{ connection.name }}"
+          (click)="CheckboxChanged($event, 'connectionType')"
+          id="conn_{{ connection.name }}"
         />
-        <label class="custom-control-label" for="core_{{ connection.name }}">{{
+        <label class="custom-control-label" for="conn_{{ connection.name }}">{{
           connection.name
         }}</label>
         <span class="ml-3">({{ connection.count }})</span>
@@ -246,11 +253,14 @@
           type="checkbox"
           class="custom-control-input"
           [checked]="interface.checked"
-          id="thread_{{ interface.name }}"
+          (click)="CheckboxChanged($event, 'interface')"
+          id="interface_{{ interface.name }}"
         />
-        <label class="custom-control-label" for="thread_{{ interface.name }}">{{
-          interface.name
-        }}</label>
+        <label
+          class="custom-control-label"
+          for="interface_{{ interface.name }}"
+          >{{ interface.name }}</label
+        >
         <span class="ml-3">({{ interface.count }})</span>
       </div>
     </div>
@@ -268,11 +278,12 @@
           type="checkbox"
           class="custom-control-input"
           [checked]="keyboardType.checked"
-          id="tech_{{ keyboardType.name }}"
+          (click)="CheckboxChanged($event, 'type')"
+          id="type_{{ keyboardType.name }}"
         />
         <label
           class="custom-control-label"
-          for="tech_{{ keyboardType.name }}"
+          for="type_{{ keyboardType.name }}"
           >{{ keyboardType.name }}</label
         >
         <span class="ml-3">({{ keyboardType.count }})</span>
@@ -295,9 +306,10 @@
           type="checkbox"
           class="custom-control-input"
           [checked]="monitorSize.checked"
-          id="core_{{ monitorSize.name }}"
+          (click)="CheckboxChanged($event, 'size')"
+          id="size_{{ monitorSize.name }}"
         />
-        <label class="custom-control-label" for="core_{{ monitorSize.name }}">{{
+        <label class="custom-control-label" for="size_{{ monitorSize.name }}">{{
           monitorSize.name
         }}</label>
         <span class="ml-3">({{ monitorSize.count }})</span>
@@ -317,9 +329,10 @@
           type="checkbox"
           class="custom-control-input"
           [checked]="monitorFr.checked"
-          id="thread_{{ monitorFr.name }}"
+          (click)="CheckboxChanged($event, 'frequency')"
+          id="freq_{{ monitorFr.name }}"
         />
-        <label class="custom-control-label" for="thread_{{ monitorFr.name }}"
+        <label class="custom-control-label" for="freq_{{ monitorFr.name }}"
           >{{ monitorFr.name }} Гц</label
         >
         <span class="ml-3">({{ monitorFr.count }})</span>
@@ -339,9 +352,10 @@
           type="checkbox"
           class="custom-control-input"
           [checked]="monitorRes.checked"
-          id="tech_{{ monitorRes.name }}"
+          (click)="CheckboxChanged($event, 'resolution')"
+          id="res_{{ monitorRes.name }}"
         />
-        <label class="custom-control-label" for="tech_{{ monitorRes.name }}">{{
+        <label class="custom-control-label" for="res_{{ monitorRes.name }}">{{
           monitorRes.name
         }}</label>
         <span class="ml-3">({{ monitorRes.count }})</span>
@@ -361,11 +375,14 @@
           type="checkbox"
           class="custom-control-input"
           [checked]="monitorMatr.checked"
-          id="tech_{{ monitorMatr.name }}"
+          (click)="CheckboxChanged($event, 'matrixType')"
+          id="matrx_{{ monitorMatr.name }}"
         />
-        <label class="custom-control-label" for="tech_{{ monitorMatr.name }}">{{
-          monitorMatr.name
-        }}</label>
+        <label
+          class="custom-control-label"
+          for="matrx_{{ monitorMatr.name }}"
+          >{{ monitorMatr.name }}</label
+        >
         <span class="ml-3">({{ monitorMatr.count }})</span>
       </div>
     </div>
@@ -383,9 +400,10 @@
           type="checkbox"
           class="custom-control-input"
           [checked]="monitorAsp.checked"
-          id="tech_{{ monitorAsp.name }}"
+          (click)="CheckboxChanged($event, 'aspectRatio')"
+          id="aspr_{{ monitorAsp.name }}"
         />
-        <label class="custom-control-label" for="tech_{{ monitorAsp.name }}">{{
+        <label class="custom-control-label" for="aspr_{{ monitorAsp.name }}">{{
           monitorAsp.name
         }}</label>
         <span class="ml-3">({{ monitorAsp.count }})</span>
@@ -408,9 +426,10 @@
           type="checkbox"
           class="custom-control-input"
           [checked]="socket.checked"
-          id="core_{{ socket.name }}"
+          (click)="CheckboxChanged($event, 'socket')"
+          id="socket_{{ socket.name }}"
         />
-        <label class="custom-control-label" for="core_{{ socket.name }}">{{
+        <label class="custom-control-label" for="socket_{{ socket.name }}">{{
           socket.name
         }}</label>
         <span class="ml-3">({{ socket.count }})</span>
@@ -430,9 +449,10 @@
           type="checkbox"
           class="custom-control-input"
           [checked]="factor.checked"
-          id="thread_{{ factor.name }}"
+          (click)="CheckboxChanged($event, 'formFactor')"
+          id="ffactor_{{ factor.name }}"
         />
-        <label class="custom-control-label" for="thread_{{ factor.name }}"
+        <label class="custom-control-label" for="ffactor_{{ factor.name }}"
           >{{ factor.name }} Гц</label
         >
         <span class="ml-3">({{ factor.count }})</span>
@@ -452,9 +472,10 @@
           type="checkbox"
           class="custom-control-input"
           [checked]="memory.checked"
-          id="tech_{{ memory.name }}"
+          (click)="CheckboxChanged($event, 'memorySupport')"
+          id="memname_{{ memory.name }}"
         />
-        <label class="custom-control-label" for="tech_{{ memory.name }}">{{
+        <label class="custom-control-label" for="memname_{{ memory.name }}">{{
           memory.name
         }}</label>
         <span class="ml-3">({{ memory.count }})</span>
@@ -474,9 +495,10 @@
           type="checkbox"
           class="custom-control-input"
           [checked]="video.checked"
-          id="tech_{{ video.name }}"
+          (click)="CheckboxChanged($event, 'videoExit')"
+          id="vexit_{{ video.name }}"
         />
-        <label class="custom-control-label" for="tech_{{ video.name }}">{{
+        <label class="custom-control-label" for="vexit_{{ video.name }}">{{
           video.name
         }}</label>
         <span class="ml-3">({{ video.count }})</span>
@@ -499,9 +521,10 @@
           type="checkbox"
           class="custom-control-input"
           [checked]="connection.checked"
-          id="core_{{ connection.name }}"
+          (click)="CheckboxChanged($event, 'connectionType')"
+          id="conn_{{ connection.name }}"
         />
-        <label class="custom-control-label" for="core_{{ connection.name }}">{{
+        <label class="custom-control-label" for="conn_{{ connection.name }}">{{
           connection.name
         }}</label>
         <span class="ml-3">({{ connection.count }})</span>
@@ -521,9 +544,10 @@
           type="checkbox"
           class="custom-control-input"
           [checked]="interface.checked"
-          id="thread_{{ interface.name }}"
+          (click)="CheckboxChanged($event, 'interface')"
+          id="interf_{{ interface.name }}"
         />
-        <label class="custom-control-label" for="thread_{{ interface.name }}">{{
+        <label class="custom-control-label" for="interf_{{ interface.name }}">{{
           interface.name
         }}</label>
         <span class="ml-3">({{ interface.count }})</span>
@@ -543,9 +567,10 @@
           type="checkbox"
           class="custom-control-input"
           [checked]="size.checked"
-          id="tech_{{ size.name }}"
+          (click)="CheckboxChanged($event, 'size')"
+          id="size_{{ size.name }}"
         />
-        <label class="custom-control-label" for="tech_{{ size.name }}">{{
+        <label class="custom-control-label" for="size_{{ size.name }}">{{
           size.name
         }}</label>
         <span class="ml-3">({{ size.count }})</span>
@@ -565,9 +590,10 @@
           type="checkbox"
           class="custom-control-input"
           [checked]="purpose.checked"
-          id="tech_{{ purpose.name }}"
+          (click)="CheckboxChanged($event, 'purpose')"
+          id="purp_{{ purpose.name }}"
         />
-        <label class="custom-control-label" for="tech_{{ purpose.name }}">{{
+        <label class="custom-control-label" for="purp_{{ purpose.name }}">{{
           purpose.name
         }}</label>
         <span class="ml-3">({{ purpose.count }})</span>
@@ -590,9 +616,10 @@
           type="checkbox"
           class="custom-control-input"
           [checked]="capacity.checked"
-          id="core_{{ capacity.name }}"
+          (click)="CheckboxChanged($event, 'capacity')"
+          id="capcity_{{ capacity.name }}"
         />
-        <label class="custom-control-label" for="core_{{ capacity.name }}"
+        <label class="custom-control-label" for="capcity_{{ capacity.name }}"
           >{{ capacity.name }} Гб</label
         >
         <span class="ml-3">({{ capacity.count }})</span>
@@ -612,9 +639,10 @@
           type="checkbox"
           class="custom-control-input"
           [checked]="memory.checked"
-          id="thread_{{ memory.name }}"
+          (click)="CheckboxChanged($event, 'memoryType')"
+          id="memtype_{{ memory.name }}"
         />
-        <label class="custom-control-label" for="thread_{{ memory.name }}">{{
+        <label class="custom-control-label" for="memtype_{{ memory.name }}">{{
           memory.name
         }}</label>
         <span class="ml-3">({{ memory.count }})</span>
@@ -634,9 +662,10 @@
           type="checkbox"
           class="custom-control-input"
           [checked]="freq.checked"
-          id="tech_{{ freq.name }}"
+          (click)="CheckboxChanged($event, 'frequency')"
+          id="freq_{{ freq.name }}"
         />
-        <label class="custom-control-label" for="tech_{{ freq.name }}"
+        <label class="custom-control-label" for="freq_{{ freq.name }}"
           >{{ freq.name }} ГГц</label
         >
         <span class="ml-3">({{ freq.count }})</span>
@@ -656,9 +685,10 @@
           type="checkbox"
           class="custom-control-input"
           [checked]="purpose.checked"
-          id="tech_{{ purpose.name }}"
+          (click)="CheckboxChanged($event, 'purpose')"
+          id="purp_{{ purpose.name }}"
         />
-        <label class="custom-control-label" for="tech_{{ purpose.name }}">{{
+        <label class="custom-control-label" for="purp_{{ purpose.name }}">{{
           purpose.name
         }}</label>
         <span class="ml-3">({{ purpose.count }})</span>
@@ -681,9 +711,10 @@
           type="checkbox"
           class="custom-control-input"
           [checked]="capacity.checked"
-          id="core_{{ capacity.name }}"
+          (click)="CheckboxChanged($event, 'memorySize')"
+          id="memsize_{{ capacity.name }}"
         />
-        <label class="custom-control-label" for="core_{{ capacity.name }}"
+        <label class="custom-control-label" for="memsize_{{ capacity.name }}"
           >{{ capacity.name }} Гб</label
         >
         <span class="ml-3">({{ capacity.count }})</span>
@@ -703,9 +734,10 @@
           type="checkbox"
           class="custom-control-input"
           [checked]="memory.checked"
-          id="thread_{{ memory.name }}"
+          (click)="CheckboxChanged($event, 'memoryType')"
+          id="memtype_{{ memory.name }}"
         />
-        <label class="custom-control-label" for="thread_{{ memory.name }}">{{
+        <label class="custom-control-label" for="memtype_{{ memory.name }}">{{
           memory.name
         }}</label>
         <span class="ml-3">({{ memory.count }})</span>
@@ -725,9 +757,10 @@
           type="checkbox"
           class="custom-control-input"
           [checked]="purpose.checked"
-          id="tech_{{ purpose.name }}"
+          (click)="CheckboxChanged($event, 'purpose')"
+          id="purp_{{ purpose.name }}"
         />
-        <label class="custom-control-label" for="tech_{{ purpose.name }}">{{
+        <label class="custom-control-label" for="purp_{{ purpose.name }}">{{
           purpose.name
         }}</label>
         <span class="ml-3">({{ purpose.count }})</span>

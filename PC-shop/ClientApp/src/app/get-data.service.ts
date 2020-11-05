@@ -1,6 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { Inject, Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { EventEmitter, Inject, Injectable } from "@angular/core";
 
 // use instead of categoryId
 export enum Category {
@@ -38,12 +37,14 @@ export enum ImagePath {
   Ssd = "images/parts/ssd/",
   Videocard = "images/parts/videocard/",
 }
+export const productsEvent = new EventEmitter();
 
 @Injectable({
   providedIn: "root",
 })
 export class GetDataService {
   Category = Category;
+
   constructor(
     private http: HttpClient,
     @Inject("BASE_URL") private baseUrl: string
