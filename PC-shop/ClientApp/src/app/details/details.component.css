@@ -1,0 +1,9 @@
+.link:hover {
+  cursor: pointer;
+}
+
+.icon {
+  color: rgb(210, 210, 210);
+  margin: 0 15px;
+  font-size: 0.75em;
+}

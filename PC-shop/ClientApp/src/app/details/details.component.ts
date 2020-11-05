@@ -1,6 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
+import { filter } from "rxjs/operators";
 import { GetDataService } from "../get-data.service";
+import { Location } from "@angular/common";
+import { RouterExtService } from "../router-ext.service";
 
 @Component({
   selector: "app-details",
@@ -9,7 +12,12 @@ import { GetDataService } from "../get-data.service";
 })
 export class DetailsComponent implements OnInit {
   product;
-  constructor(private route: ActivatedRoute, public service: GetDataService) {}
+
+  constructor(
+    private route: ActivatedRoute,
+    public location: Location,
+    public service: GetDataService
+  ) {}
 
   ngOnInit() {
     this.route.params.subscribe((i) => {

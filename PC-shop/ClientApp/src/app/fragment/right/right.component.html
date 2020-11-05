@@ -12,6 +12,7 @@
             [src]="service.GetImage(product)"
             class="card-img-top"
             alt="..."
+            [title]="'Подробнее о товаре ' + product.name"
           />
         </a>
         <div class="card-body">
@@ -22,9 +23,18 @@
             *ngIf="categoryId == service.Category.Cpu"
             class="card-text pb-4"
           >
-            <p>Количество ядер: {{ product.countOfCores }}</p>
-            <p>Количество потоков: {{ product.countOfThreads }}</p>
-            <p>Интегрированная графика: {{ product.graphics }}</p>
+            <p>
+              <span class="features">Количество ядер:</span>
+              <span>{{ product.countOfCores }}</span>
+            </p>
+            <p>
+              <span class="features">Количество потоков:</span>
+              <span>{{ product.countOfThreads }}</span>
+            </p>
+            <p>
+              <span class="features">Интегрированная графика:</span>
+              <span>{{ product.graphics }}</span>
+            </p>
           </div>
 
           <!-- for hdd -->
@@ -32,9 +42,18 @@
             *ngIf="categoryId == service.Category.Hdd"
             class="card-text pb-4"
           >
-            <p>Емкость диска: {{ product.capacity }}</p>
-            <p>Скорость чтения: {{ product.readSpeed }}</p>
-            <p>Скорость записи: {{ product.writeSpeed }}</p>
+            <p>
+              <span class="features">Емкость диска:</span>
+              <span>{{ product.capacity }}</span>
+            </p>
+            <p>
+              <span class="features">Скорость чтения:</span>
+              <span>{{ product.readSpeed }}</span>
+            </p>
+            <p>
+              <span class="features">Скорость записи:</span>
+              <span>{{ product.writeSpeed }}</span>
+            </p>
           </div>
 
           <!-- for keyboard-->
@@ -42,9 +61,18 @@
             *ngIf="categoryId == service.Category.Keyboard"
             class="card-text pb-4"
           >
-            <p>Тип подключения: {{ product.connectionType }}</p>
-            <p>Тип интерфейса: {{ product.interface }}</p>
-            <p>Тип клавиатуры: {{ product.type }}</p>
+            <p>
+              <span class="features">Тип подключения:</span>
+              <span>{{ product.connectionType }}</span>
+            </p>
+            <p>
+              <span class="features">Тип интерфейса:</span>
+              <span>{{ product.interface }}</span>
+            </p>
+            <p>
+              <span class="features">Тип клавиатуры:</span>
+              <span>{{ product.type }}</span>
+            </p>
           </div>
 
           <!-- for monitor-->
@@ -52,9 +80,18 @@
             *ngIf="categoryId == service.Category.Monitor"
             class="card-text pb-4"
           >
-            <p>Диагональ монитора: {{ product.size }}</p>
-            <p>Разрешение монитора: {{ product.resolution }}</p>
-            <p>Тип матрицы: {{ product.matrixType }}</p>
+            <p>
+              <span class="features">Диагональ монитора:</span>
+              <span>{{ product.size }}</span>
+            </p>
+            <p>
+              <span class="features">Разрешение монитора:</span>
+              <span>{{ product.resolution }}</span>
+            </p>
+            <p>
+              <span class="features">Тип матрицы:</span>
+              <span>{{ product.matrixType }}</span>
+            </p>
           </div>
 
           <!-- for motherboard-->
@@ -62,9 +99,18 @@
             *ngIf="categoryId == service.Category.Motherboard"
             class="card-text pb-4"
           >
-            <p>Форм фактор: {{ product.formFactor }}</p>
-            <p>Поддерживаемая память: {{ product.memorySupport }}</p>
-            <p>Видео выход: {{ product.videoExit }}</p>
+            <p>
+              <span class="features">Форм фактор:</span>
+              <span>{{ product.formFactor }}</span>
+            </p>
+            <p>
+              <span class="features">Поддерживаемая память:</span>
+              <span>{{ product.memorySupport }}</span>
+            </p>
+            <p>
+              <span class="features">Видео выход:</span>
+              <span>{{ product.videoExit }}</span>
+            </p>
           </div>
 
           <!-- for mouse-->
@@ -72,9 +118,18 @@
             *ngIf="categoryId == service.Category.Mouse"
             class="card-text pb-4"
           >
-            <p>Тип подключения: {{ product.connectionType }}</p>
-            <p>Интерфейс подключения: {{ product.interface }}</p>
-            <p>Размер мышки: {{ product.size }}</p>
+            <p>
+              <span class="features">Тип подключения:</span>
+              <span>{{ product.connectionType }}</span>
+            </p>
+            <p>
+              <span class="features">Интерфейс подключения:</span>
+              <span>{{ product.interface }}</span>
+            </p>
+            <p>
+              <span class="features">Размер мышки:</span>
+              <span>{{ product.size }}</span>
+            </p>
           </div>
 
           <!-- for ram-->
@@ -82,9 +137,18 @@
             *ngIf="categoryId == service.Category.Ram"
             class="card-text pb-4"
           >
-            <p>Количесто памяти: {{ product.capacity }}</p>
-            <p>Тип памяти: {{ product.memoryType }}</p>
-            <p>Частота работы: {{ product.frequency }}</p>
+            <p>
+              <span class="features">Количесто памяти:</span>
+              <span>{{ product.capacity }}</span>
+            </p>
+            <p>
+              <span class="features">Тип памяти:</span>
+              <span>{{ product.memoryType }}</span>
+            </p>
+            <p>
+              <span class="features">Частота работы:</span>
+              <span>{{ product.frequency }}</span>
+            </p>
           </div>
 
           <!-- for ssd -->
@@ -92,9 +156,18 @@
             *ngIf="categoryId == service.Category.Ssd"
             class="card-text pb-4"
           >
-            <p>Емкость носителя: {{ product.capacity }} Gb</p>
-            <p>Скорость чтения: {{ product.readSpeed }} Mb/s</p>
-            <p>Скорость записи: {{ product.writeSpeed }} Mb/s</p>
+            <p>
+              <span class="features">Емкость носителя:</span>
+              <span>{{ product.capacity }}</span>
+            </p>
+            <p>
+              <span class="features">Скорость чтения:</span>
+              <span>{{ product.readSpeed }}</span>
+            </p>
+            <p>
+              <span class="features">Скорость записи:</span>
+              <span>{{ product.writeSpeed }}</span>
+            </p>
           </div>
 
           <!-- for videocard -->
@@ -102,12 +175,39 @@
             *ngIf="categoryId == service.Category.Videocard"
             class="card-text pb-4"
           >
-            <p>Тип чипсета: {{ product.chip }}</p>
-            <p>Объем видеопамяти: {{ product.memorySize }}</p>
-            <p>Тип памяти: {{ product.memoryType }}</p>
+            <p>
+              <span class="features">Тип чипсета:</span>
+              <span>{{ product.chip }}</span>
+            </p>
+            <p>
+              <span class="features">Объем видеопамяти:</span>
+              <span>{{ product.memorySize }}</span>
+            </p>
+            <p>
+              <span class="features">Тип памяти:</span>
+              <span>{{ product.memoryType }}</span>
+            </p>
           </div>
 
-          <h5 class="card-bottom">{{ product.price }} USD</h5>
+          <div class="card-bottom">
+            <hr />
+            <div class="row mx-0">
+              <div class="col-9 p-0">
+                <p>{{ product.price }} USD</p>
+                <span>Есть в наличии</span>
+              </div>
+              <div class="col-3 p-0 text-right">
+                <i
+                  title="Add to cart"
+                  data-toggle="modal"
+                  data-target="#shoppingCart"
+                  (click)="service.AddItemToCart(product)"
+                  class="fa fa-shopping-cart fa-2x link"
+                  aria-hidden="true"
+                ></i>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

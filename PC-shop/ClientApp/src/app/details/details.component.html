@@ -1,6 +1,8 @@
 <div *ngIf="product">
   <div>
-    <a [routerLink]="['/']">Home</a>
+    <a [routerLink]="['/']">All Parts</a>
+    <i class="fa fa-chevron-right icon" aria-hidden="true"></i>
+    <a class="link" (click)="location.back()">Go Back</a>
   </div>
 
   <div class="my-5">

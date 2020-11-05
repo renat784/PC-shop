@@ -1,5 +1,13 @@
 .card {
   height: 100%;
+  padding-bottom: 6rem;
+}
+
+.card:hover .card-img-top {
+  padding: 9px;
+}
+.card:hover {
+  border: 1px solid rgb(131, 131, 131);
 }
 
 .card-img-top {
@@ -10,7 +18,31 @@
 }
 
 .card-bottom {
+  width: 80%;
   position: absolute;
   bottom: 0%;
-  transform: translateX(50%);
+  padding-bottom: 10px;
+}
+
+.card-bottom p {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+.card-bottom span {
+  color: rgb(29, 173, 29);
+  font-size: 0.9rem;
+}
+.card-bottom i {
+  color: rgb(29, 173, 29);
+}
+
+.features {
+  margin-right: 0.5rem;
+  color: rgb(80, 80, 80);
+  font-size: 0.9rem;
+}
+
+.link {
+  cursor: pointer;
 }

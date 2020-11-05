@@ -1,14 +1,14 @@
 <h3>{{ title }}</h3>
 <!-- total count and reset filter button -->
 <div class="row">
-  <div class="col-7">
-    <span class="offset-5">Выбрано {{ count }} товаров</span>
+  <div class="col-7 text-right">
     <a
       *ngIf="showReset"
-      class="btn btn-success ml-5"
+      class="btn btn-success offset-5"
       [routerLink]="['/' + componentName]"
       >Сбросить</a
     >
+    <span class="ml-2">Выбрано {{ count }} товаров</span>
   </div>
   <!-- sort select-->
   <div class="col-3">
