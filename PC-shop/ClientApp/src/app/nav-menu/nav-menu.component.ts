@@ -11,6 +11,7 @@ export class NavMenuComponent implements OnInit {
 
   ngOnInit(): void {}
   isExpanded = false;
+  discount = 0;
 
   // GetImage(item) {
   //   return "images/parts/cpu/" + item.images.split(";")[0].trim();

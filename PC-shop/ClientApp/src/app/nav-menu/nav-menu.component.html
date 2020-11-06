@@ -90,38 +90,64 @@
           <p>Но это никогда не поздно исправить :)</p>
         </div>
         <ul *ngIf="service.GetItemsCount() !== 0" class="list-unstyled">
-          <li class="my-3" *ngFor="let product of service.GetItemsFromCart()">
+          <li class="mb-5" *ngFor="let item of service.GetItemsFromCart()">
             <div class="row">
               <div class="col-1">
                 <img
-                  style="width: 75px; height: 75px"
-                  [src]="service.GetImage(product.product)"
+                  style="max-width: 100px; height: 50px"
+                  [src]="service.GetImage(item.product)"
                 />
               </div>
-              <div class="col-4">
-                <span class="ml-3">{{ product.product.name }}</span>
+              <div class="col-4 pl-5">
+                <span class="ml-3"
+                  >{{ service.getNameById(item.product.categoryId) }}
+                  {{ item.product.make }} {{ item.product.name }}</span
+                >
               </div>
-              <div class="col-4">
-                <button (click)="CountChangedDown(product, inputVal.value)">
+              <div class="col-3 px-0">
+                <button
+                  title="Убрать 1 шт."
+                  class="btn btn-outline-info"
+                  (click)="CountChangedDown(item, inputVal.value)"
+                >
                   -
                 </button>
                 <input
                   type="number"
-                  (change)="CountChanged(product, inputVal.value)"
+                  (change)="CountChanged(item, inputVal.value)"
                   #inputVal
+                  class="mx-3 form-control pt-0"
+                  style="width: 75px; display: inline"
                   min="1"
-                  [value]="product.count"
+                  [value]="item.count"
                 />
-                <button (click)="CountChangedUp(product, inputVal.value)">
+                <button
+                  title="Добавить еще 1 шт."
+                  class="btn btn-outline-info"
+                  (click)="CountChangedUp(item, inputVal.value)"
+                >
                   +
                 </button>
-                <span>{{ product.count }}</span>
               </div>
-              <div class="col-2">{{ product.product.price }} USD</div>
-              <div class="col-1">
-                <button (click)="service.RemoveItemFromCart(product.product)">
-                  x
-                </button>
+              <div title="Цена за 1 шт." class="col-2">
+                <div>{{ item.product.price }} USD</div>
+                <small>цена за 1 шт.</small>
+              </div>
+              <div class="col-2 pl-0" style="display: flex">
+                <div>
+                  <div title="Цена за {{ item.count }} шт.">
+                    {{ item.product.price * item.count }} USD
+                  </div>
+                  <small>итого за {{ item.count }} шт.</small>
+                </div>
+                <div>
+                  <i
+                    (click)="service.RemoveItemFromCart(item.product)"
+                    class="fa fa-trash ml-5 link p-2"
+                    title="Удалить товар"
+                    aria-hidden="true"
+                  ></i>
+                </div>
               </div>
             </div>
           </li>
@@ -135,20 +161,48 @@
         <button
           (click)="service.RemoveItemsFromCart()"
           type="button"
-          class="btn btn-secondary"
+          class="btn btn-outline-danger"
           data-dismiss="modal"
         >
-          Remove all
+          Очистить корзину
         </button>
+        <!-- promo code -->
+        <div>
+          <input
+            type="text"
+            class="form-control"
+            (input)="
+              promocode.value == 'RENAT' ? (discount = 99) : (discount = 0)
+            "
+            #promocode
+            style="width: 150px; display: inline"
+            placeholder="промокод"
+            title="Введите промокод чтобы получить скидку. Например, RENAT"
+          />
+          <span
+            style="margin-left: 25px; font-weight: 600; color: green"
+            *ngIf="discount"
+            >Скидка {{ discount }} %</span
+          >
+        </div>
         <div>
           <h4>
-            Total: <span class="ml-3">{{ service.PriceTotal() }} USD</span>
+            Всего:
+            <span *ngIf="discount == 0" class="ml-3"
+              >{{ service.PriceTotal() }} USD</span
+            >
+            <span *ngIf="discount != 0" class="ml-3"
+              >{{
+                service.PriceTotal() - (service.PriceTotal() * discount) / 100
+              }}
+              USD</span
+            >
           </h4>
         </div>
         <a
           [routerLink]="['/checkout']"
           data-dismiss="modal"
-          class="btn btn-success"
+          class="btn btn-outline-success"
           >Оформить заказ</a
         >
       </div>
