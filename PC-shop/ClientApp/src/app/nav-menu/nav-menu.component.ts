@@ -1,5 +1,9 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, EventEmitter, OnInit } from "@angular/core";
+
 import { GetDataService } from "../get-data.service";
+
+export let orderChanged = new EventEmitter<boolean>();
+export let promocodeChanged = new EventEmitter();
 
 @Component({
   selector: "app-nav-menu",
@@ -7,7 +11,24 @@ import { GetDataService } from "../get-data.service";
   styleUrls: ["./nav-menu.component.css"],
 })
 export class NavMenuComponent implements OnInit {
+  oldTotal = 0;
+
   constructor(public service: GetDataService) {}
+
+  OrderChanged() {
+    orderChanged.emit(true);
+  }
+
+  InputForPromocodeChanged(val) {
+    if (val == "RENAT") {
+      this.oldTotal = this.service.PriceTotal();
+      this.discount = 75;
+      promocodeChanged.emit({ name: "RENAT", percents: this.discount });
+    } else {
+      this.oldTotal = 0;
+      this.discount = 0;
+    }
+  }
 
   ngOnInit(): void {}
   isExpanded = false;
@@ -30,6 +51,7 @@ export class NavMenuComponent implements OnInit {
     console.log(product);
 
     this.service.ChangeProductCount(product);
+    this.OrderChanged();
   }
 
   collapse() {
