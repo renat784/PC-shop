@@ -224,4 +224,37 @@ export class GetDataService {
     if (pref) return JSON.parse(pref);
     else return { view: "col-3" };
   }
+
+  // returns name of category by category id
+  getNameById(id) {
+    switch (id) {
+      case "1":
+        return "Процессор";
+        break;
+      case "2":
+        return "Жесткий диск";
+        break;
+      case "3":
+        return "Клавиатура";
+        break;
+      case "4":
+        return "Монитор";
+        break;
+      case "5":
+        return "Материнская плата";
+        break;
+      case "6":
+        return "Мышка";
+        break;
+      case "7":
+        return "Оперативная память";
+        break;
+      case "8":
+        return "SSD диск";
+        break;
+      case "9":
+        return "Видеокарта";
+        break;
+    }
+  }
 }

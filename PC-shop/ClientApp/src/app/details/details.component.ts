@@ -12,6 +12,7 @@ import { RouterExtService } from "../router-ext.service";
 })
 export class DetailsComponent implements OnInit {
   product;
+  nameOfCategory;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,6 +28,8 @@ export class DetailsComponent implements OnInit {
       this.service.GetProduct(categoryId, productId).subscribe((i) => {
         this.product = i;
         console.log(this.product);
+        this.nameOfCategory = this.service.getNameById(categoryId);
+        console.log(categoryId);
       });
     });
   }

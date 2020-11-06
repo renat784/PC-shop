@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PC_shop.Data;
 
 namespace PC_shop.Migrations
 {
     [DbContext(typeof(PC_shopContext))]
-    partial class PC_shopContextModelSnapshot : ModelSnapshot
+    [Migration("20201106081548_seed_changes_1")]
+    partial class seed_changes_1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -66,7 +68,7 @@ namespace PC_shop.Migrations
                             Graphics = "Intel UHD Graphics 630",
                             Images = "intel_bx8070110900k_images_18036977635.jpg; intel_bx8070110900k_images_18036977713.jpg; intel_bx8070110900k_images_18036977791.jpg",
                             Make = "Intel",
-                            Name = "Core x10",
+                            Name = "intel x10",
                             Price = 500,
                             TechProcess = 14
                         },
@@ -79,7 +81,7 @@ namespace PC_shop.Migrations
                             Graphics = "Intel UHD Graphics 630",
                             Images = "intel_bx8070110700k_images_18036978979.jpg; intel_bx8070110700k_images_18036979117.jpg; intel_bx8070110700k_images_18036979195.jpg",
                             Make = "Intel",
-                            Name = "Core x8",
+                            Name = "intel x8",
                             Price = 1200,
                             TechProcess = 14
                         },
@@ -92,7 +94,7 @@ namespace PC_shop.Migrations
                             Graphics = "Нет",
                             Images = "intel_core_i5_9400f_bx80684i59400f_images_10930275039.jpg; intel_core_i5_9400f_bx80684i59400f_images_10930275525.jpg; intel_core_i5_9400f_bx80684i59400f_images_10930277979.jpg",
                             Make = "Intel",
-                            Name = "Core x6",
+                            Name = "intel x6",
                             Price = 900,
                             TechProcess = 14
                         },
@@ -105,7 +107,7 @@ namespace PC_shop.Migrations
                             Graphics = "Нет",
                             Images = "copy_amd_ryzen_7_3800x_5d175dc657832_images_12764982409.jpg; copy_amd_ryzen_7_3800x_5d175dc657832_images_12764983147.jpg; copy_amd_ryzen_7_3800x_5d175dc657832_images_12764983759.jpg",
                             Make = "AMD",
-                            Name = "x8",
+                            Name = "AMD x8",
                             Price = 400,
                             TechProcess = 7
                         },
@@ -118,7 +120,7 @@ namespace PC_shop.Migrations
                             Graphics = "Нет",
                             Images = "copy_amd_ryzen_5_3600x_5f100787c16dd_images_19179571645.jpg; copy_amd_ryzen_5_3600x_5f100787c16dd_images_19179572233.jpg; copy_amd_ryzen_5_3600x_5f100787c16dd_images_19179572899.jpg",
                             Make = "AMD",
-                            Name = "x6",
+                            Name = "AMD x6",
                             Price = 1500,
                             TechProcess = 7
                         },
@@ -131,7 +133,7 @@ namespace PC_shop.Migrations
                             Graphics = "Нет",
                             Images = "amd_ryzen_3_3100_images_18001372357.jpg; amd_ryzen_3_3100_images_18001299481.jpg; amd_ryzen_3_3100_images_18001298797.jpg; amd_ryzen_3_3100_images_18001298413.jpg; amd_ryzen_3_3100_images_18001297993.jpg; amd_ryzen_3_3100_images_18001297027.jpg",
                             Make = "AMD",
-                            Name = "x4",
+                            Name = "AMD x4",
                             Price = 1600,
                             TechProcess = 7
                         });

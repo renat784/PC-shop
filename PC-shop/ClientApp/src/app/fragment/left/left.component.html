@@ -30,9 +30,12 @@
         [checked]="make.checked"
         id="make_{{ make.name }}"
       />
-      <label class="custom-control-label" for="make_{{ make.name }}">{{
-        make.name
-      }}</label>
+      <label
+        [title]="'Товары от производителя ' + make.name"
+        class="custom-control-label"
+        for="make_{{ make.name }}"
+        >{{ make.name }}</label
+      >
       <span class="ml-3">({{ make.count }})</span>
     </div>
   </div>
@@ -40,7 +43,7 @@
 
 <!-- price -->
 <div class="mt-5">
-  <p>Цена</p>
+  <p>Цена в USD</p>
 
   <form>
     <div class="row mx-0">
@@ -48,6 +51,7 @@
         [(ngModel)]="priceMin"
         type="number"
         name="priceMin"
+        [title]="'Цена товара от ' + priceMin + ' USD'"
         class="form-control col-4"
       />
       <span></span>
@@ -55,6 +59,7 @@
         [(ngModel)]="priceMax"
         type="number"
         name="priceMax"
+        [title]="'Цена товара до ' + priceMax + ' USD'"
         class="form-control col-4 ml-1"
       />
       <button
@@ -85,9 +90,12 @@
           (click)="CheckboxChanged($event, 'countOfCores')"
           id="core_{{ core.name }}"
         />
-        <label class="custom-control-label" for="core_{{ core.name }}">{{
-          core.name
-        }}</label>
+        <label
+          [title]="'Процессоры с ' + core.name + ' ядрами'"
+          class="custom-control-label"
+          for="core_{{ core.name }}"
+          >{{ core.name }}</label
+        >
         <span class="ml-3">({{ core.count }})</span>
       </div>
     </div>
@@ -108,9 +116,12 @@
           (click)="CheckboxChanged($event, 'countOfThreads')"
           id="thread_{{ thread.name }}"
         />
-        <label class="custom-control-label" for="thread_{{ thread.name }}">{{
-          thread.name
-        }}</label>
+        <label
+          [title]="'Процессоры с ' + thread.name + ' потоками'"
+          class="custom-control-label"
+          for="thread_{{ thread.name }}"
+          >{{ thread.name }}</label
+        >
         <span class="ml-3">({{ thread.count }})</span>
       </div>
     </div>
@@ -131,9 +142,16 @@
           (click)="CheckboxChanged($event, 'graphics')"
           id="graphic_{{ graphic.name }}"
         />
-        <label class="custom-control-label" for="graphic_{{ graphic.name }}">{{
-          graphic.name
-        }}</label>
+        <label
+          [title]="
+            graphic.name == 'Нет'
+              ? 'Процессоры без интегрированной видеокарты'
+              : 'Процессоры с интегрированной видеокартой ' + graphic.name
+          "
+          class="custom-control-label"
+          for="graphic_{{ graphic.name }}"
+          >{{ graphic.name }}</label
+        >
         <span class="ml-3">({{ graphic.count }})</span>
       </div>
     </div>
@@ -154,7 +172,10 @@
           (click)="CheckboxChanged($event, 'techProcess')"
           id="tech_{{ tech.name }}"
         />
-        <label class="custom-control-label" for="tech_{{ tech.name }}"
+        <label
+          [title]="'Процессоры сделанные по техпроцессу ' + tech.name + ' нм'"
+          class="custom-control-label"
+          for="tech_{{ tech.name }}"
           >{{ tech.name }} нм</label
         >
         <span class="ml-3">({{ tech.count }})</span>
@@ -184,8 +205,11 @@
           (click)="CheckboxChanged($event, 'capacity')"
           id="capacity_{{ capacity.name }}"
         />
-        <label class="custom-control-label" for="capacity_{{ capacity.name }}"
-          >{{ capacity.name }} Gb</label
+        <label
+          [title]="'Диски с емкостью ' + capacity.name + ' Гб'"
+          class="custom-control-label"
+          for="capacity_{{ capacity.name }}"
+          >{{ capacity.name }} Гб</label
         >
         <span class="ml-3">({{ capacity.count }})</span>
       </div>
@@ -207,8 +231,11 @@
           (click)="CheckboxChanged($event, 'readSpeed')"
           id="read_{{ read.name }}"
         />
-        <label class="custom-control-label" for="read_{{ read.name }}"
-          >{{ read.name }} Mb/s</label
+        <label
+          [title]="'Скорость чтения данных ' + read.name + ' Мб/с'"
+          class="custom-control-label"
+          for="read_{{ read.name }}"
+          >{{ read.name }} Мб/с</label
         >
         <span class="ml-3">({{ read.count }})</span>
       </div>
@@ -233,9 +260,12 @@
           (click)="CheckboxChanged($event, 'connectionType')"
           id="conn_{{ connection.name }}"
         />
-        <label class="custom-control-label" for="conn_{{ connection.name }}">{{
-          connection.name
-        }}</label>
+        <label
+          [title]="'Способ подключения клавиатуры: ' + connection.name"
+          class="custom-control-label"
+          for="conn_{{ connection.name }}"
+          >{{ connection.name }}</label
+        >
         <span class="ml-3">({{ connection.count }})</span>
       </div>
     </div>
@@ -257,6 +287,7 @@
           id="interface_{{ interface.name }}"
         />
         <label
+          [title]="'Интерфейс подключения клавиатуры: ' + interface.name"
           class="custom-control-label"
           for="interface_{{ interface.name }}"
           >{{ interface.name }}</label
@@ -268,7 +299,7 @@
 
   <!-- типы клавиатур -->
   <div class="mt-5">
-    <p>Типы клавиатуры</p>
+    <p>Типы клавиш клавиатуры</p>
     <div>
       <div
         *ngFor="let keyboardType of keyboard_Types"
@@ -283,6 +314,7 @@
         />
         <label
           class="custom-control-label"
+          [title]="'Тип клавиш клавиатуры: ' + keyboardType.name"
           for="type_{{ keyboardType.name }}"
           >{{ keyboardType.name }}</label
         >
@@ -309,9 +341,12 @@
           (click)="CheckboxChanged($event, 'size')"
           id="size_{{ monitorSize.name }}"
         />
-        <label class="custom-control-label" for="size_{{ monitorSize.name }}">{{
-          monitorSize.name
-        }}</label>
+        <label
+          [title]="'Диагональ монитора ' + monitorSize.name + '&#34;'"
+          class="custom-control-label"
+          for="size_{{ monitorSize.name }}"
+          >{{ monitorSize.name }}"</label
+        >
         <span class="ml-3">({{ monitorSize.count }})</span>
       </div>
     </div>
@@ -332,7 +367,10 @@
           (click)="CheckboxChanged($event, 'frequency')"
           id="freq_{{ monitorFr.name }}"
         />
-        <label class="custom-control-label" for="freq_{{ monitorFr.name }}"
+        <label
+          [title]="'Частота обновления монитора ' + monitorFr.name + 'Гц'"
+          class="custom-control-label"
+          for="freq_{{ monitorFr.name }}"
           >{{ monitorFr.name }} Гц</label
         >
         <span class="ml-3">({{ monitorFr.count }})</span>
@@ -355,9 +393,12 @@
           (click)="CheckboxChanged($event, 'resolution')"
           id="res_{{ monitorRes.name }}"
         />
-        <label class="custom-control-label" for="res_{{ monitorRes.name }}">{{
-          monitorRes.name
-        }}</label>
+        <label
+          [title]="'Разрешение монитора ' + monitorRes.name"
+          class="custom-control-label"
+          for="res_{{ monitorRes.name }}"
+          >{{ monitorRes.name }}</label
+        >
         <span class="ml-3">({{ monitorRes.count }})</span>
       </div>
     </div>
@@ -380,6 +421,7 @@
         />
         <label
           class="custom-control-label"
+          [title]="'Матрица монитора ' + monitorMatr.name"
           for="matrx_{{ monitorMatr.name }}"
           >{{ monitorMatr.name }}</label
         >
@@ -403,9 +445,12 @@
           (click)="CheckboxChanged($event, 'aspectRatio')"
           id="aspr_{{ monitorAsp.name }}"
         />
-        <label class="custom-control-label" for="aspr_{{ monitorAsp.name }}">{{
-          monitorAsp.name
-        }}</label>
+        <label
+          [title]="'Соотношение сторон монитора ' + monitorAsp.name"
+          class="custom-control-label"
+          for="aspr_{{ monitorAsp.name }}"
+          >{{ monitorAsp.name }}</label
+        >
         <span class="ml-3">({{ monitorAsp.count }})</span>
       </div>
     </div>
@@ -429,9 +474,12 @@
           (click)="CheckboxChanged($event, 'socket')"
           id="socket_{{ socket.name }}"
         />
-        <label class="custom-control-label" for="socket_{{ socket.name }}">{{
-          socket.name
-        }}</label>
+        <label
+          [title]="'Тип сокета ' + socket.name"
+          class="custom-control-label"
+          for="socket_{{ socket.name }}"
+          >{{ socket.name }}</label
+        >
         <span class="ml-3">({{ socket.count }})</span>
       </div>
     </div>
@@ -452,7 +500,10 @@
           (click)="CheckboxChanged($event, 'formFactor')"
           id="ffactor_{{ factor.name }}"
         />
-        <label class="custom-control-label" for="ffactor_{{ factor.name }}"
+        <label
+          [title]="'Форм фактор ' + factor.name"
+          class="custom-control-label"
+          for="ffactor_{{ factor.name }}"
           >{{ factor.name }} Гц</label
         >
         <span class="ml-3">({{ factor.count }})</span>
@@ -475,9 +526,12 @@
           (click)="CheckboxChanged($event, 'memorySupport')"
           id="memname_{{ memory.name }}"
         />
-        <label class="custom-control-label" for="memname_{{ memory.name }}">{{
-          memory.name
-        }}</label>
+        <label
+          [title]="'Поддержка памяти ' + memory.name + 'МГц'"
+          class="custom-control-label"
+          for="memname_{{ memory.name }}"
+          >{{ memory.name }} МГц</label
+        >
         <span class="ml-3">({{ memory.count }})</span>
       </div>
     </div>
@@ -498,9 +552,12 @@
           (click)="CheckboxChanged($event, 'videoExit')"
           id="vexit_{{ video.name }}"
         />
-        <label class="custom-control-label" for="vexit_{{ video.name }}">{{
-          video.name
-        }}</label>
+        <label
+          [title]="'Видео выход ' + video.name"
+          class="custom-control-label"
+          for="vexit_{{ video.name }}"
+          >{{ video.name }}</label
+        >
         <span class="ml-3">({{ video.count }})</span>
       </div>
     </div>
@@ -524,9 +581,12 @@
           (click)="CheckboxChanged($event, 'connectionType')"
           id="conn_{{ connection.name }}"
         />
-        <label class="custom-control-label" for="conn_{{ connection.name }}">{{
-          connection.name
-        }}</label>
+        <label
+          [title]="'Способ подключения мышки ' + connection.name"
+          class="custom-control-label"
+          for="conn_{{ connection.name }}"
+          >{{ connection.name }}</label
+        >
         <span class="ml-3">({{ connection.count }})</span>
       </div>
     </div>
@@ -547,9 +607,12 @@
           (click)="CheckboxChanged($event, 'interface')"
           id="interf_{{ interface.name }}"
         />
-        <label class="custom-control-label" for="interf_{{ interface.name }}">{{
-          interface.name
-        }}</label>
+        <label
+          [title]="'Интерфейс подключения мышки ' + interface.name"
+          class="custom-control-label"
+          for="interf_{{ interface.name }}"
+          >{{ interface.name }}</label
+        >
         <span class="ml-3">({{ interface.count }})</span>
       </div>
     </div>
@@ -570,9 +633,12 @@
           (click)="CheckboxChanged($event, 'size')"
           id="size_{{ size.name }}"
         />
-        <label class="custom-control-label" for="size_{{ size.name }}">{{
-          size.name
-        }}</label>
+        <label
+          [title]="'Размер мышки ' + size.name"
+          class="custom-control-label"
+          for="size_{{ size.name }}"
+          >{{ size.name }}</label
+        >
         <span class="ml-3">({{ size.count }})</span>
       </div>
     </div>
@@ -593,9 +659,12 @@
           (click)="CheckboxChanged($event, 'purpose')"
           id="purp_{{ purpose.name }}"
         />
-        <label class="custom-control-label" for="purp_{{ purpose.name }}">{{
-          purpose.name
-        }}</label>
+        <label
+          [title]="'Назначение мышки ' + purpose.name"
+          class="custom-control-label"
+          for="purp_{{ purpose.name }}"
+          >{{ purpose.name }}</label
+        >
         <span class="ml-3">({{ purpose.count }})</span>
       </div>
     </div>
@@ -619,7 +688,10 @@
           (click)="CheckboxChanged($event, 'capacity')"
           id="capcity_{{ capacity.name }}"
         />
-        <label class="custom-control-label" for="capcity_{{ capacity.name }}"
+        <label
+          [title]="'Объем памяти ' + capacity.name + ' Гб'"
+          class="custom-control-label"
+          for="capcity_{{ capacity.name }}"
           >{{ capacity.name }} Гб</label
         >
         <span class="ml-3">({{ capacity.count }})</span>
@@ -642,9 +714,12 @@
           (click)="CheckboxChanged($event, 'memoryType')"
           id="memtype_{{ memory.name }}"
         />
-        <label class="custom-control-label" for="memtype_{{ memory.name }}">{{
-          memory.name
-        }}</label>
+        <label
+          [title]="'Тип памяти ' + memory.name"
+          class="custom-control-label"
+          for="memtype_{{ memory.name }}"
+          >{{ memory.name }}</label
+        >
         <span class="ml-3">({{ memory.count }})</span>
       </div>
     </div>
@@ -665,7 +740,10 @@
           (click)="CheckboxChanged($event, 'frequency')"
           id="freq_{{ freq.name }}"
         />
-        <label class="custom-control-label" for="freq_{{ freq.name }}"
+        <label
+          [title]="'Частота памяти ' + freq.name + ' Ггц'"
+          class="custom-control-label"
+          for="freq_{{ freq.name }}"
           >{{ freq.name }} ГГц</label
         >
         <span class="ml-3">({{ freq.count }})</span>
@@ -688,9 +766,12 @@
           (click)="CheckboxChanged($event, 'purpose')"
           id="purp_{{ purpose.name }}"
         />
-        <label class="custom-control-label" for="purp_{{ purpose.name }}">{{
-          purpose.name
-        }}</label>
+        <label
+          [title]="'Назначения памяти ' + purpose.name"
+          class="custom-control-label"
+          for="purp_{{ purpose.name }}"
+          >{{ purpose.name }}</label
+        >
         <span class="ml-3">({{ purpose.count }})</span>
       </div>
     </div>
@@ -714,7 +795,10 @@
           (click)="CheckboxChanged($event, 'memorySize')"
           id="memsize_{{ capacity.name }}"
         />
-        <label class="custom-control-label" for="memsize_{{ capacity.name }}"
+        <label
+          [title]="'Объем памяти видеокарты ' + capacity.name + ' Гб'"
+          class="custom-control-label"
+          for="memsize_{{ capacity.name }}"
           >{{ capacity.name }} Гб</label
         >
         <span class="ml-3">({{ capacity.count }})</span>
@@ -737,9 +821,12 @@
           (click)="CheckboxChanged($event, 'memoryType')"
           id="memtype_{{ memory.name }}"
         />
-        <label class="custom-control-label" for="memtype_{{ memory.name }}">{{
-          memory.name
-        }}</label>
+        <label
+          [title]="'Тип памяти ' + memory.name"
+          class="custom-control-label"
+          for="memtype_{{ memory.name }}"
+          >{{ memory.name }}</label
+        >
         <span class="ml-3">({{ memory.count }})</span>
       </div>
     </div>
@@ -760,9 +847,12 @@
           (click)="CheckboxChanged($event, 'purpose')"
           id="purp_{{ purpose.name }}"
         />
-        <label class="custom-control-label" for="purp_{{ purpose.name }}">{{
-          purpose.name
-        }}</label>
+        <label
+          [title]="'Назначение видеокарты ' + purpose.name"
+          class="custom-control-label"
+          for="purp_{{ purpose.name }}"
+          >{{ purpose.name }}</label
+        >
         <span class="ml-3">({{ purpose.count }})</span>
       </div>
     </div>

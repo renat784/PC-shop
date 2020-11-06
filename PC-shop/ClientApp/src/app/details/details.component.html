@@ -1,12 +1,12 @@
 <div *ngIf="product">
   <div>
-    <a [routerLink]="['/']">All Parts</a>
+    <a [routerLink]="['/']">Все товары</a>
     <i class="fa fa-chevron-right icon" aria-hidden="true"></i>
-    <a class="link" (click)="location.back()">Go Back</a>
+    <a class="link" (click)="location.back()">Назад к списку товаров</a>
   </div>
 
   <div class="my-5">
-    <h1>{{ product.name }}</h1>
+    <h1>{{ nameOfCategory }} {{ product.make }} {{ product.name }}</h1>
   </div>
 
   <!-- tab panel -->
@@ -48,38 +48,58 @@
         >
           <!-- for cpu -->
           <div *ngIf="product.categoryId == service.Category.Cpu" class="row">
-            <ul class="col-4 list-unstyled">
-              <li>Производитель</li>
-              <li>Интегрированная графика</li>
-              <li>Количество ядер</li>
-              <li>Количество потоков</li>
-              <li>Техпроцесс</li>
-            </ul>
-            <ul class="col-4 list-unstyled">
-              <li>{{ product.make }}</li>
-              <li>{{ product.graphics }}</li>
-              <li>{{ product.countOfCores }} cores</li>
-              <li>{{ product.countOfThreads }} threads</li>
-              <li>{{ product.techProcess }} нм</li>
-            </ul>
+            <table class="table table-striped">
+              <tbody>
+                <tr>
+                  <td>Производитель</td>
+                  <td>{{ product.make }}</td>
+                </tr>
+                <tr>
+                  <td>Интегрированная графика</td>
+                  <td>{{ product.graphics }}</td>
+                </tr>
+                <tr>
+                  <td>Количество ядер</td>
+                  <td>{{ product.countOfCores }}</td>
+                </tr>
+                <tr>
+                  <td>Количество потоков</td>
+                  <td>{{ product.countOfThreads }}</td>
+                </tr>
+                <tr>
+                  <td>Техпроцесс</td>
+                  <td>{{ product.techProcess }} нм</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <!-- for hdd -->
           <div *ngIf="product.categoryId == service.Category.Hdd" class="row">
-            <ul class="col-4 list-unstyled">
-              <li>Производитель</li>
-              <li>Модель</li>
-              <li>Емкость диска</li>
-              <li>Скорость чтения</li>
-              <li>Скорость записи</li>
-            </ul>
-            <ul class="col-4 list-unstyled">
-              <li>{{ product.make }}</li>
-              <li>{{ product.name }}</li>
-              <li>{{ product.capacity }}</li>
-              <li>{{ product.readSpeed }} Mb/s</li>
-              <li>{{ product.writeSpeed }} Mb/s</li>
-            </ul>
+            <table class="table table-striped">
+              <tbody>
+                <tr>
+                  <td>Производитель</td>
+                  <td>{{ product.make }}</td>
+                </tr>
+                <tr>
+                  <td>Модель</td>
+                  <td>{{ product.name }}</td>
+                </tr>
+                <tr>
+                  <td>Емкость диска</td>
+                  <td>{{ product.capacity }} Гб</td>
+                </tr>
+                <tr>
+                  <td>Скорость чтения</td>
+                  <td>{{ product.readSpeed }} Мб/с</td>
+                </tr>
+                <tr>
+                  <td>Скорость записи</td>
+                  <td>{{ product.writeSpeed }} Мб/с</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <!-- for keyboards -->
@@ -87,20 +107,30 @@
             *ngIf="product.categoryId == service.Category.Keyboard"
             class="row"
           >
-            <ul class="col-4 list-unstyled">
-              <li>Производитель</li>
-              <li>Модель</li>
-              <li>Тип подключения</li>
-              <li>Тип интерфейса</li>
-              <li>Тип клавиатуры</li>
-            </ul>
-            <ul class="col-4 list-unstyled">
-              <li>{{ product.make }}</li>
-              <li>{{ product.name }}</li>
-              <li>{{ product.connectionType }}</li>
-              <li>{{ product.interface }}</li>
-              <li>{{ product.type }}</li>
-            </ul>
+            <table class="table table-striped">
+              <tbody>
+                <tr>
+                  <td>Производитель</td>
+                  <td>{{ product.make }}</td>
+                </tr>
+                <tr>
+                  <td>Модель</td>
+                  <td>{{ product.name }}</td>
+                </tr>
+                <tr>
+                  <td>Тип подключения</td>
+                  <td>{{ product.connectionType }}</td>
+                </tr>
+                <tr>
+                  <td>Тип интерфейса</td>
+                  <td>{{ product.interface }}</td>
+                </tr>
+                <tr>
+                  <td>Тип клавиатуры</td>
+                  <td>{{ product.type }}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <!-- for monitors -->
@@ -108,24 +138,38 @@
             *ngIf="product.categoryId == service.Category.Monitor"
             class="row"
           >
-            <ul class="col-4 list-unstyled">
-              <li>Производитель</li>
-              <li>Модель</li>
-              <li>Диагональ монитора</li>
-              <li>Частота обновления</li>
-              <li>Разрешение монитора</li>
-              <li>Тип матрицы</li>
-              <li>Соотношение сторон</li>
-            </ul>
-            <ul class="col-4 list-unstyled">
-              <li>{{ product.make }}</li>
-              <li>{{ product.name }}</li>
-              <li>{{ product.size }} дюймов</li>
-              <li>{{ product.frequency }} Гц</li>
-              <li>{{ product.resolution }} пикселов</li>
-              <li>{{ product.matrixType }}</li>
-              <li>{{ product.aspectRatio }}</li>
-            </ul>
+            <table class="table table-striped">
+              <tbody>
+                <tr>
+                  <td>Производитель</td>
+                  <td>{{ product.make }}</td>
+                </tr>
+                <tr>
+                  <td>Модель</td>
+                  <td>{{ product.name }}</td>
+                </tr>
+                <tr>
+                  <td>Диагональ монитора</td>
+                  <td>{{ product.size }}"</td>
+                </tr>
+                <tr>
+                  <td>Частота обновления</td>
+                  <td>{{ product.frequency }} Гц</td>
+                </tr>
+                <tr>
+                  <td>Разрешение монитора</td>
+                  <td>{{ product.resolution }}</td>
+                </tr>
+                <tr>
+                  <td>Тип матрицы</td>
+                  <td>{{ product.matrixType }}</td>
+                </tr>
+                <tr>
+                  <td>Соотношение сторон</td>
+                  <td>{{ product.aspectRatio }}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <!-- for motherboard -->
@@ -133,82 +177,126 @@
             *ngIf="product.categoryId == service.Category.Motherboard"
             class="row"
           >
-            <ul class="col-4 list-unstyled">
-              <li>Производитель</li>
-              <li>Модель</li>
-              <li>Тип сокета</li>
-              <li>Форм фактор</li>
-              <li>Поддерживаемая память</li>
-              <li>Интегрированное видео</li>
-              <li>Видео выход</li>
-            </ul>
-            <ul class="col-4 list-unstyled">
-              <li>{{ product.make }}</li>
-              <li>{{ product.name }}</li>
-              <li>{{ product.socket }}</li>
-              <li>{{ product.formFactor }}</li>
-              <li>{{ product.memorySupport }}</li>
-              <li>{{ product.integratedVideoCard }}</li>
-              <li>{{ product.videoExit }}</li>
-            </ul>
+            <table class="table table-striped">
+              <tbody>
+                <tr>
+                  <td>Производитель</td>
+                  <td>{{ product.make }}</td>
+                </tr>
+                <tr>
+                  <td>Модель</td>
+                  <td>{{ product.name }}</td>
+                </tr>
+                <tr>
+                  <td>Тип сокета</td>
+                  <td>{{ product.socket }}</td>
+                </tr>
+                <tr>
+                  <td>Форм фактор</td>
+                  <td>{{ product.formFactor }}</td>
+                </tr>
+                <tr>
+                  <td>Поддерживаемая память</td>
+                  <td>{{ product.memorySupport }} ГГц</td>
+                </tr>
+                <tr>
+                  <td>Видео выход</td>
+                  <td>{{ product.videoExit }}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <!-- for mouse-->
           <div *ngIf="product.categoryId == service.Category.Mouse" class="row">
-            <ul class="col-4 list-unstyled">
-              <li>Производитель</li>
-              <li>Модель</li>
-              <li>Тип подключения</li>
-              <li>Размер мышки</li>
-              <li>Интерфейс подключения</li>
-              <li>Назначение</li>
-            </ul>
-            <ul class="col-4 list-unstyled">
-              <li>{{ product.make }}</li>
-              <li>{{ product.name }}</li>
-              <li>{{ product.connectionType }}</li>
-              <li>{{ product.size }}</li>
-              <li>{{ product.interface }}</li>
-              <li>{{ product.purpose }}</li>
-            </ul>
+            <table class="table table-striped">
+              <tbody>
+                <tr>
+                  <td>Производитель</td>
+                  <td>{{ product.make }}</td>
+                </tr>
+                <tr>
+                  <td>Модель</td>
+                  <td>{{ product.name }}</td>
+                </tr>
+                <tr>
+                  <td>Тип подключения</td>
+                  <td>{{ product.connectionType }}</td>
+                </tr>
+                <tr>
+                  <td>Размер мышки</td>
+                  <td>{{ product.size }}</td>
+                </tr>
+                <tr>
+                  <td>Интерфейс подключения</td>
+                  <td>{{ product.interface }}</td>
+                </tr>
+                <tr>
+                  <td>Назначение</td>
+                  <td>{{ product.purpose }}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <!-- for ram -->
           <div *ngIf="product.categoryId == service.Category.Ram" class="row">
-            <ul class="col-4 list-unstyled">
-              <li>Производитель</li>
-              <li>Модель</li>
-              <li>Количесто памяти</li>
-              <li>Тип памяти</li>
-              <li>Частота работы</li>
-              <li>Назначение</li>
-            </ul>
-            <ul class="col-4 list-unstyled">
-              <li>{{ product.make }}</li>
-              <li>{{ product.name }}</li>
-              <li>{{ product.capacity }} Гб</li>
-              <li>{{ product.memoryType }}</li>
-              <li>{{ product.frequency }} ГГц</li>
-              <li>{{ product.purpose }}</li>
-            </ul>
+            <table class="table table-striped">
+              <tbody>
+                <tr>
+                  <td>Производитель</td>
+                  <td>{{ product.make }}</td>
+                </tr>
+                <tr>
+                  <td>Модель</td>
+                  <td>{{ product.name }}</td>
+                </tr>
+                <tr>
+                  <td>Количесто памяти</td>
+                  <td>{{ product.capacity }} Гб</td>
+                </tr>
+                <tr>
+                  <td>Тип памяти</td>
+                  <td>{{ product.memoryType }}</td>
+                </tr>
+                <tr>
+                  <td>Частота работы</td>
+                  <td>{{ product.frequency }} ГГц</td>
+                </tr>
+                <tr>
+                  <td>Назначение</td>
+                  <td>{{ product.purpose }}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <!-- for ssd -->
           <div *ngIf="product.categoryId == service.Category.Ssd" class="row">
-            <ul class="col-4 list-unstyled">
-              <li>Производитель</li>
-              <li>Модель</li>
-              <li>Емкость диска</li>
-              <li>Скорость чтения</li>
-              <li>Скорость записи</li>
-            </ul>
-            <ul class="col-4 list-unstyled">
-              <li>{{ product.make }}</li>
-              <li>{{ product.name }}</li>
-              <li>{{ product.capacity }}</li>
-              <li>{{ product.readSpeed }} Mb/s</li>
-              <li>{{ product.writeSpeed }} Mb/s</li>
-            </ul>
+            <table class="table table-striped">
+              <tbody>
+                <tr>
+                  <td>Производитель</td>
+                  <td>{{ product.make }}</td>
+                </tr>
+                <tr>
+                  <td>Модель</td>
+                  <td>{{ product.name }}</td>
+                </tr>
+                <tr>
+                  <td>Емкость диска</td>
+                  <td>{{ product.capacity }} Гб</td>
+                </tr>
+                <tr>
+                  <td>Скорость чтения</td>
+                  <td>{{ product.readSpeed }} Мб/с</td>
+                </tr>
+                <tr>
+                  <td>Скорость записи</td>
+                  <td>{{ product.writeSpeed }} Мб/с</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <!-- for videocard-->
@@ -216,20 +304,30 @@
             *ngIf="product.categoryId == service.Category.Videocard"
             class="row"
           >
-            <ul class="col-4 list-unstyled">
-              <li>Производитель</li>
-              <li>Модель</li>
-              <li>Объем видеопамяти</li>
-              <li>Тип памяти</li>
-              <li>Назначение</li>
-            </ul>
-            <ul class="col-4 list-unstyled">
-              <li>{{ product.make }}</li>
-              <li>{{ product.name }}</li>
-              <li>{{ product.memorySize }} Gb</li>
-              <li>{{ product.memoryType }}</li>
-              <li>{{ product.purpose }}</li>
-            </ul>
+            <table class="table table-striped">
+              <tbody>
+                <tr>
+                  <td>Производитель</td>
+                  <td>{{ product.make }}</td>
+                </tr>
+                <tr>
+                  <td>Модель</td>
+                  <td>{{ product.name }}</td>
+                </tr>
+                <tr>
+                  <td>Объем видеопамяти</td>
+                  <td>{{ product.memorySize }} Гб</td>
+                </tr>
+                <tr>
+                  <td>Тип памяти</td>
+                  <td>{{ product.memoryType }}</td>
+                </tr>
+                <tr>
+                  <td>Назначение</td>
+                  <td>{{ product.purpose }}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <small
@@ -243,24 +341,82 @@
           role="tabpanel"
           aria-labelledby="photo-tab"
         >
-          <div>
-            <img
-              width="500"
-              class="my-3"
-              *ngFor="let image of service.GetImages(product)"
-              [src]="image"
-            />
+          <!-- coriusel -->
+          <div
+            id="carouselExampleCaptions"
+            class="carousel slide"
+            data-ride="carousel"
+          >
+            <ol class="carousel-indicators">
+              <li
+                *ngFor="
+                  let image of service.GetImages(product);
+                  let index = index
+                "
+                data-target="#carouselExampleCaptions"
+                [attr.data-slide-to]="index"
+                style="filter: contrast(0.5)"
+                [ngClass]="{ active: index == 0 }"
+              ></li>
+            </ol>
+            <div class="carousel-inner">
+              <div
+                *ngFor="
+                  let image of service.GetImages(product);
+                  let index = index
+                "
+                [ngClass]="{ active: index == 0 }"
+                class="carousel-item"
+                style="width: 550px; height: 350px"
+              >
+                <img [src]="image" style="height: 100%" alt="..." />
+              </div>
+            </div>
+            <a
+              class="carousel-control-prev"
+              href="#carouselExampleCaptions"
+              role="button"
+              data-slide="prev"
+            >
+              <span
+                style="filter: contrast(0.5)"
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a
+              class="carousel-control-next"
+              href="#carouselExampleCaptions"
+              role="button"
+              data-slide="next"
+            >
+              <span
+                style="filter: contrast(0.5)"
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="sr-only">Next</span>
+            </a>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-3 mt-5">
-      <div class="row">
-        <div class="col-3">
-          <img width="100" [src]="service.GetImage(product)" />
+
+    <!-- right part -->
+    <!-- price and image of product with button 'buy'-->
+    <div class="col-3 mt-5 pr-0">
+      <div style="display: flex">
+        <div class="pr-4">
+          <img
+            style="height: 100px; max-width: 175px"
+            [src]="service.GetImage(product)"
+          />
         </div>
-        <div class="col-9 text-right">
-          <p>{{ product.name }}</p>
+        <div style="align-self: center">
+          <span style="font-weight: 600"
+            >{{ nameOfCategory }} {{ product.make }} {{ product.name }}</span
+          >
         </div>
       </div>
       <div class="my-5">
