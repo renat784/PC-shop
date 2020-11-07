@@ -2,7 +2,16 @@
 
 /* Provide sufficient contrast against white background */
 a {
-  color: #0366d6;
+  color: #3e77aa;
+  font-weight: 400;
+}
+
+small {
+  color: #797878;
+}
+
+a:hover {
+  color: red;
 }
 
 code {

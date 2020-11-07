@@ -25,7 +25,7 @@
     </div>
 
     <!-- Order -->
-    <div class="card my-3">
+    <div class="card my-3" style="background-color: rgb(247, 247, 247)">
       <div class="card-body">
         <div>
           <div style="display: flex; justify-content: space-between">
@@ -83,13 +83,39 @@
   </div>
   <!-- promocode -->
   <div class="col-4">
-    <div class="card my-3" style="width: 18rem">
+    <div
+      class="card my-3"
+      style="width: 18rem; background-color: rgb(247, 247, 247)"
+    >
       <div class="card-body">
-        <p class="card-text">Промокод</p>
-        <p *ngIf="promocode">
+        <h5 class="mb-2">Промокод</h5>
+
+        <!-- input promo code -->
+        <div>
+          <input
+            type="text"
+            class="form-control"
+            (input)="InputForPromocodeChanged($event.target.value)"
+            style="width: 100px; display: inline"
+            placeholder="код"
+            title="Введите промокод чтобы получить скидку. Например, RENAT"
+          />
+          <span
+            style="margin-left: 25px; font-weight: 600; color: green"
+            *ngIf="discount"
+            >Скидка {{ discount }} %</span
+          >
+        </div>
+        <div>
+          <small style="font-size: 10px"
+            >Введите промокод чтобы получить скидку</small
+          >
+        </div>
+
+        <!-- <p *ngIf="promocode">
           <strong>{{ promocode.name }}</strong>
           <small class="ml-3">-{{ promocode.percents }}% на все товары</small>
-        </p>
+        </p> -->
       </div>
     </div>
 
@@ -101,22 +127,24 @@
     </div>
 
     <!-- total -->
-    <div class="card" style="width: 18rem">
+    <div
+      class="card"
+      style="width: 18rem; background-color: rgb(247, 247, 247)"
+    >
       <div class="card-body">
         <h4 class="card-title">Итого</h4>
-        <p *ngIf="promocode">
+        <p *ngIf="discount">
           <span>С учетом промокода:</span>
-          <strong class="ml-2">{{ promocode.name }}</strong>
         </p>
         <div class="card-text">
           <div
-            *ngIf="!promocode"
+            *ngIf="!discount"
             style="display: flex; justify-content: space-between"
           >
             <h5>К оплате</h5>
             <h5>{{ service.PriceTotal() }} USD</h5>
           </div>
-          <div *ngIf="promocode">
+          <div *ngIf="discount">
             <div style="text-decoration: line-through; color: gray">
               <p>К оплате: {{ service.PriceTotal() }} USD</p>
             </div>
@@ -126,7 +154,7 @@
                 <span class="ml-4"
                   >{{
                     service.PriceTotal() -
-                      (service.PriceTotal() * promocode.percents) / 100
+                      (service.PriceTotal() * discount) / 100
                   }}
                   USD</span
                 >

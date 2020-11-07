@@ -1,14 +1,11 @@
 <h3>{{ title }}</h3>
 <!-- total count and reset filter button -->
-<div class="row">
-  <div class="col-7 text-right">
-    <a
-      *ngIf="showReset"
-      class="btn btn-success offset-5"
-      [routerLink]="['/' + componentName]"
-      >Сбросить</a
-    >
-    <span class="ml-2">Выбрано {{ count }} товаров</span>
+<div class="row mx-0 my-3" style="align-items: center">
+  <div class="col-7 px-0">
+    <span>Выбрано {{ count }} товаров</span>
+    <a *ngIf="showReset" class="ml-5" [routerLink]="['/' + componentName]">
+      <span class="badge badge-dark" style="padding: 10px">Сбросить</span>
+    </a>
   </div>
   <!-- sort select-->
   <div class="col-3">
@@ -30,20 +27,34 @@
         type="button"
         (click)="ToggleView($event)"
         id="small"
+        title="Мелкая плитка"
+        style="
+          width: 35px;
+          height: 35px;
+          background-position: center;
+          background-image: url(grid_small.png);
+          background-size: 25px;
+          background-repeat: no-repeat;
+        "
         [ngClass]="{ active: view == 'col-3' }"
         class="btn btn-secondary"
-      >
-        Small
-      </button>
+      ></button>
       <button
         type="button"
         (click)="ToggleView($event)"
+        title="Крупная плитка"
         id="large"
+        style="
+          width: 35px;
+          height: 35px;
+          background-position: center;
+          background-image: url(grid_big.png);
+          background-size: 25px;
+          background-repeat: no-repeat;
+        "
         [ngClass]="{ active: view == 'col-4' }"
         class="btn btn-secondary"
-      >
-        Large
-      </button>
+      ></button>
     </div>
   </div>
 </div>

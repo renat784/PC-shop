@@ -3,7 +3,10 @@
     class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
   >
     <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']">PC shop</a>
+      <a class="navbar-brand" [routerLink]="['/']">
+        <img class="mr-3" height="40" [src]="'smile.jpg'" />
+        PC shop</a
+      >
       <button
         class="navbar-toggler"
         type="button"
@@ -27,10 +30,12 @@
               data-target="#shoppingCart"
               class="nav-link text-dark"
               >Корзина
-              <span style="color: red" *ngIf="service.GetItemsCount() !== 0">
-                {{ service.GetItemsCount() }}
-              </span></a
-            >
+              <span
+                *ngIf="service.GetItemsCount() !== 0"
+                class="badge badge-light"
+                >{{ service.GetItemsCount() }}</span
+              >
+            </a>
           </li>
         </ul>
       </div>
@@ -164,12 +169,13 @@
           (click)="service.RemoveItemsFromCart(); OrderChanged()"
           type="button"
           class="btn btn-outline-danger"
-          data-dismiss="modal"
+          data-toggle="modal"
+          data-target="#shoppingCart"
         >
           Очистить корзину
         </button>
         <!-- promo code -->
-        <div>
+        <!-- <div>
           <input
             type="text"
             class="form-control"
@@ -183,25 +189,24 @@
             *ngIf="discount"
             >Скидка {{ discount }} %</span
           >
-        </div>
+        </div> -->
         <div>
-          <span
+          <!-- <span
             *ngIf="oldTotal"
             style="text-decoration: line-through; color: gray"
             >Всего: {{ oldTotal }} USD</span
-          >
+          > -->
 
           <h4>
             Всего:
-            <span *ngIf="!discount" class="ml-3"
-              >{{ service.PriceTotal() }} USD</span
-            >
-            <span *ngIf="discount" class="ml-3"
+            <!-- <span *ngIf="!discount" class="ml-3" -->
+            <span class="ml-3">{{ service.PriceTotal() }} USD</span>
+            <!-- <span *ngIf="discount" class="ml-3"
               >{{
                 service.PriceTotal() - (service.PriceTotal() * discount) / 100
               }}
               USD</span
-            >
+            > -->
           </h4>
         </div>
         <a

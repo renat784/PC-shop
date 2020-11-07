@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { GetDataService } from "../get-data.service";
-import { orderChanged, promocodeChanged } from "../nav-menu/nav-menu.component";
+import { orderChanged } from "../nav-menu/nav-menu.component";
 
 @Component({
   selector: "app-checkout",
@@ -10,9 +10,17 @@ import { orderChanged, promocodeChanged } from "../nav-menu/nav-menu.component";
 })
 export class CheckoutComponent implements OnInit {
   cart = [];
-  promocode;
+  discount;
 
   constructor(public service: GetDataService, private router: Router) {}
+
+  InputForPromocodeChanged(val) {
+    if (val == "RENAT") {
+      this.discount = 75;
+    } else {
+      this.discount = 0;
+    }
+  }
 
   CheckCart() {
     this.cart = this.service.GetItemsFromCart();
@@ -29,9 +37,9 @@ export class CheckoutComponent implements OnInit {
       if (i) this.CheckCart();
     });
 
-    promocodeChanged.subscribe((i) => {
-      this.promocode = i;
-    });
+    // promocodeChanged.subscribe((i) => {
+    //   this.promocode = i;
+    // });
 
     this.CheckCart();
   }

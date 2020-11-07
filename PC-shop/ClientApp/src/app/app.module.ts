@@ -22,6 +22,7 @@ import { MotherboardComponent } from "./motherboard/motherboard.component";
 import { MouseComponent } from "./mouse/mouse.component";
 import { RamComponent } from "./ram/ram.component";
 import { VideocardComponent } from "./videocard/videocard.component";
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { VideocardComponent } from "./videocard/videocard.component";
     MouseComponent,
     RamComponent,
     VideocardComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
