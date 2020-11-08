@@ -1,57 +1,62 @@
 <!--right part - products-->
 <div>
-  <div class="row">
+  <div class="row mx-0">
     <div
       [ngClass]="view"
-      class="my-3 px-0"
+      class="my-3 px-0 col-md-6"
       *ngFor="let product of productsSorted"
     >
-      <div class="card">
+      <div class="card mx-1">
         <a [routerLink]="['/details/' + product.categoryId + '/' + product.id]">
-          <img
+          <div
+            [ngStyle]="{
+              backgroundImage: 'url(' + service.GetImage(product) + ' )'
+            }"
+            class="card-img"
+            [title]="'Подробнее о товаре ' + product.make + ' ' + product.name"
+          ></div>
+          <!-- <img
             [src]="service.GetImage(product)"
             class="card-img-top"
             alt="..."
-            [title]="'Подробнее о товаре ' + product.name"
-          />
+            [title]="'Подробнее о товаре ' + product.make + ' ' + product.name"
+          /> -->
         </a>
         <div class="card-body">
-          <h5 class="card-title">{{ product.name }}</h5>
+          <div style="position: relative; padding-top: 85px">
+            <h5 style="position: absolute; top: 0">
+              {{ product.make }} {{ product.name }}
+            </h5>
+          </div>
 
           <!-- for cpu -->
-          <div
-            *ngIf="categoryId == service.Category.Cpu"
-            class="card-text pb-4"
-          >
-            <p>
-              <span class="features">Количество ядер:</span>
+          <div *ngIf="categoryId == service.Category.Cpu" class="card-text">
+            <p class="features">
+              <span>Количество ядер:</span><br />
               <span>{{ product.countOfCores }}</span>
             </p>
-            <p>
-              <span class="features">Количество потоков:</span>
+            <p class="features">
+              <span>Количество потоков:</span><br />
               <span>{{ product.countOfThreads }}</span>
             </p>
-            <p>
-              <span class="features">Интегрированная графика:</span>
+            <p class="features">
+              <span>Интегрированная графика:</span><br />
               <span>{{ product.graphics }}</span>
             </p>
           </div>
 
           <!-- for hdd -->
-          <div
-            *ngIf="categoryId == service.Category.Hdd"
-            class="card-text pb-4"
-          >
-            <p>
-              <span class="features">Емкость диска:</span>
+          <div *ngIf="categoryId == service.Category.Hdd" class="card-text">
+            <p class="features">
+              <span>Емкость диска:</span><br />
               <span>{{ product.capacity }} Гб</span>
             </p>
-            <p>
-              <span class="features">Скорость чтения:</span>
+            <p class="features">
+              <span>Скорость чтения:</span><br />
               <span>{{ product.readSpeed }} Мб/с</span>
             </p>
-            <p>
-              <span class="features">Скорость записи:</span>
+            <p class="features">
+              <span>Скорость записи:</span><br />
               <span>{{ product.writeSpeed }} Мб/с</span>
             </p>
           </div>
@@ -59,37 +64,34 @@
           <!-- for keyboard-->
           <div
             *ngIf="categoryId == service.Category.Keyboard"
-            class="card-text pb-4"
+            class="card-text"
           >
-            <p>
-              <span class="features">Тип подключения:</span>
+            <p class="features">
+              <span>Тип подключения:</span><br />
               <span>{{ product.connectionType }}</span>
             </p>
-            <p>
-              <span class="features">Тип интерфейса:</span>
+            <p class="features">
+              <span>Тип интерфейса:</span><br />
               <span>{{ product.interface }}</span>
             </p>
-            <p>
-              <span class="features">Тип клавиатуры:</span>
+            <p class="features">
+              <span>Тип клавиатуры:</span><br />
               <span>{{ product.type }}</span>
             </p>
           </div>
 
           <!-- for monitor-->
-          <div
-            *ngIf="categoryId == service.Category.Monitor"
-            class="card-text pb-4"
-          >
-            <p>
-              <span class="features">Диагональ монитора:</span>
+          <div *ngIf="categoryId == service.Category.Monitor" class="card-text">
+            <p class="features">
+              <span>Диагональ монитора:</span><br />
               <span>{{ product.size }}"</span>
             </p>
-            <p>
-              <span class="features">Разрешение монитора:</span>
+            <p class="features">
+              <span>Разрешение монитора:</span><br />
               <span>{{ product.resolution }}</span>
             </p>
-            <p>
-              <span class="features">Тип матрицы:</span>
+            <p class="features">
+              <span>Тип матрицы:</span><br />
               <span>{{ product.matrixType }}</span>
             </p>
           </div>
@@ -97,75 +99,66 @@
           <!-- for motherboard-->
           <div
             *ngIf="categoryId == service.Category.Motherboard"
-            class="card-text pb-4"
+            class="card-text"
           >
-            <p>
-              <span class="features">Форм фактор:</span>
+            <p class="features">
+              <span>Форм фактор:</span><br />
               <span>{{ product.formFactor }}</span>
             </p>
-            <p>
-              <span class="features">Поддерживаемая память:</span>
+            <p class="features">
+              <span>Поддерживаемая память:</span><br />
               <span>{{ product.memorySupport }} МГц</span>
             </p>
-            <p>
-              <span class="features">Видео выход:</span>
+            <p class="features">
+              <span>Видео выход:</span><br />
               <span>{{ product.videoExit }}</span>
             </p>
           </div>
 
           <!-- for mouse-->
-          <div
-            *ngIf="categoryId == service.Category.Mouse"
-            class="card-text pb-4"
-          >
-            <p>
-              <span class="features">Тип подключения:</span>
+          <div *ngIf="categoryId == service.Category.Mouse" class="card-text">
+            <p class="features">
+              <span>Тип подключения:</span><br />
               <span>{{ product.connectionType }}</span>
             </p>
-            <p>
-              <span class="features">Интерфейс подключения:</span>
+            <p class="features">
+              <span>Интерфейс подключения:</span><br />
               <span>{{ product.interface }}</span>
             </p>
-            <p>
-              <span class="features">Размер мышки:</span>
+            <p class="features">
+              <span>Размер мышки:</span><br />
               <span>{{ product.size }}</span>
             </p>
           </div>
 
           <!-- for ram-->
-          <div
-            *ngIf="categoryId == service.Category.Ram"
-            class="card-text pb-4"
-          >
-            <p>
-              <span class="features">Количесто памяти:</span>
+          <div *ngIf="categoryId == service.Category.Ram" class="card-text">
+            <p class="features">
+              <span>Количесто памяти:</span><br />
               <span>{{ product.capacity }} Гб</span>
             </p>
-            <p>
-              <span class="features">Тип памяти:</span>
+            <p class="features">
+              <span>Тип памяти:</span><br />
               <span>{{ product.memoryType }}</span>
             </p>
-            <p>
-              <span class="features">Частота работы:</span>
+            <p class="features">
+              <span>Частота работы:</span><br />
               <span>{{ product.frequency }} ГГц</span>
             </p>
           </div>
 
           <!-- for ssd -->
-          <div
-            *ngIf="categoryId == service.Category.Ssd"
-            class="card-text pb-4"
-          >
-            <p>
-              <span class="features">Емкость носителя:</span>
+          <div *ngIf="categoryId == service.Category.Ssd" class="card-text">
+            <p class="features">
+              <span>Емкость носителя:</span><br />
               <span>{{ product.capacity }} Гб</span>
             </p>
-            <p>
-              <span class="features">Скорость чтения:</span>
+            <p class="features">
+              <span>Скорость чтения:</span><br />
               <span>{{ product.readSpeed }} Мб/с</span>
             </p>
-            <p>
-              <span class="features">Скорость записи:</span>
+            <p class="features">
+              <span>Скорость записи:</span><br />
               <span>{{ product.writeSpeed }} Мб/с</span>
             </p>
           </div>
@@ -173,14 +166,14 @@
           <!-- for videocard -->
           <div
             *ngIf="categoryId == service.Category.Videocard"
-            class="card-text pb-4"
+            class="card-text"
           >
-            <p>
-              <span class="features">Объем видеопамяти:</span>
+            <p class="features">
+              <span>Объем видеопамяти:</span><br />
               <span>{{ product.memorySize }} Гб</span>
             </p>
-            <p>
-              <span class="features">Тип памяти:</span>
+            <p class="features">
+              <span>Тип памяти:</span><br />
               <span>{{ product.memoryType }}</span>
             </p>
           </div>
@@ -196,7 +189,7 @@
               </div>
               <div class="col-3 p-0 text-right">
                 <i
-                  title="Add to cart"
+                  title="Добавить в корзину"
                   data-toggle="modal"
                   data-target="#shoppingCart"
                   (click)="service.AddItemToCart(product)"

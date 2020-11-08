@@ -11,7 +11,7 @@
 
   <!-- tab panel -->
   <div class="row">
-    <div class="col-9">
+    <div class="col-lg-9">
       <ul class="nav nav-tabs mb-5" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
           <a
@@ -343,6 +343,7 @@
         >
           <!-- coriusel -->
           <div
+            class="col-12"
             id="carouselExampleCaptions"
             class="carousel slide"
             data-ride="carousel"
@@ -366,11 +367,29 @@
                   let index = index
                 "
                 [ngClass]="{ active: index == 0 }"
+                [ngStyle]="{
+                  backgroundImage: 'url(' + image + ' )'
+                }"
+                class="carousel-item"
+                style="
+                  height: 300px;
+                  background-size: contain;
+                  background-position: center;
+                  background-repeat: no-repeat;
+                "
+              ></div>
+
+              <!-- <div
+                *ngFor="
+                  let image of service.GetImages(product);
+                  let index = index
+                "
+                [ngClass]="{ active: index == 0 }"
                 class="carousel-item"
                 style="width: 550px; height: 350px"
               >
                 <img [src]="image" style="height: 100%" alt="..." />
-              </div>
+              </div> -->
             </div>
             <a
               class="carousel-control-prev"
@@ -405,11 +424,11 @@
 
     <!-- right part -->
     <!-- price and image of product with button 'buy'-->
-    <div class="col-3 mt-5 pr-0">
+    <div class="col-md-6 offset-md-3 offset-lg-0 col-lg-3 pt-5 mt-5 mt-lg-0">
       <div style="display: flex">
         <div class="pr-4">
           <img
-            style="height: 100px; max-width: 175px"
+            style="height: 50px; max-width: 125px"
             [src]="service.GetImage(product)"
           />
         </div>
@@ -419,8 +438,8 @@
           >
         </div>
       </div>
-      <div class="my-5">
-        <h3>{{ product.price }} USD</h3>
+      <div class="my-4">
+        <h4>{{ product.price }} USD</h4>
         <div>
           <button
             (click)="service.AddItemToCart(product)"

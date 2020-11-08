@@ -94,12 +94,12 @@ export class TopComponent implements OnInit {
   ToggleView(e) {
     switch (e.target.id) {
       case "small":
-        this.view = "col-3";
+        this.view = "col-lg-3";
         this.viewChanged.emit(this.view);
         this.service.setViewPref({ view: this.view });
         break;
       case "large":
-        this.view = "col-4";
+        this.view = "col-lg-4";
         this.viewChanged.emit(this.view);
         this.service.setViewPref({ view: this.view });
         break;

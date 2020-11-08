@@ -1,60 +1,64 @@
 <h3>{{ title }}</h3>
 <!-- total count and reset filter button -->
 <div class="row mx-0 my-3" style="align-items: center">
-  <div class="col-7 px-0">
-    <span>Выбрано {{ count }} товаров</span>
+  <div class="col-md-7 px-0 mb-2 mb-md-0">
+    <span
+      >Выбрано <strong>{{ count }}</strong> товаров</span
+    >
     <a *ngIf="showReset" class="ml-5" [routerLink]="['/' + componentName]">
       <span class="badge badge-dark" style="padding: 10px">Сбросить</span>
     </a>
   </div>
   <!-- sort select-->
-  <div class="col-3">
-    <select class="form-control" (change)="SortProducts($event)">
-      <option
-        *ngFor="let option of sortOptions"
-        [selected]="option.selected"
-        [value]="option.value"
-      >
-        {{ option.name }}
-      </option>
-    </select>
-  </div>
+  <div class="col-md-5 px-0" style="display: flex; justify-content: flex-end">
+    <div class="col-md-8 px-0">
+      <select class="form-control" (change)="SortProducts($event)">
+        <option
+          *ngFor="let option of sortOptions"
+          [selected]="option.selected"
+          [value]="option.value"
+        >
+          {{ option.name }}
+        </option>
+      </select>
+    </div>
 
-  <!-- toggle view buttons -->
-  <div class="col-2">
-    <div class="btn-group" role="group">
-      <button
-        type="button"
-        (click)="ToggleView($event)"
-        id="small"
-        title="Мелкая плитка"
-        style="
-          width: 35px;
-          height: 35px;
-          background-position: center;
-          background-image: url(grid_small.png);
-          background-size: 25px;
-          background-repeat: no-repeat;
-        "
-        [ngClass]="{ active: view == 'col-3' }"
-        class="btn btn-secondary"
-      ></button>
-      <button
-        type="button"
-        (click)="ToggleView($event)"
-        title="Крупная плитка"
-        id="large"
-        style="
-          width: 35px;
-          height: 35px;
-          background-position: center;
-          background-image: url(grid_big.png);
-          background-size: 25px;
-          background-repeat: no-repeat;
-        "
-        [ngClass]="{ active: view == 'col-4' }"
-        class="btn btn-secondary"
-      ></button>
+    <!-- toggle view buttons -->
+    <div class="ml-4">
+      <div class="btn-group" role="group">
+        <button
+          type="button"
+          (click)="ToggleView($event)"
+          id="small"
+          title="Мелкая плитка"
+          style="
+            width: 35px;
+            height: 35px;
+            background-position: center;
+            background-image: url(grid_small.png);
+            background-size: 25px;
+            background-repeat: no-repeat;
+          "
+          [ngClass]="{ active: view == 'col-lg-3' }"
+          class="btn btn-secondary"
+        ></button>
+        <button
+          type="button"
+          (click)="ToggleView($event)"
+          title="Крупная плитка"
+          id="large"
+          style="
+            width: 35px;
+            height: 35px;
+            background-position: center;
+            background-image: url(grid_big.png);
+            background-size: 25px;
+            background-repeat: no-repeat;
+          "
+          [ngClass]="{ active: view == 'col-lg-4' }"
+          class="btn btn-secondary"
+        ></button>
+      </div>
     </div>
   </div>
 </div>

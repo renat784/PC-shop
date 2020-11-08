@@ -222,7 +222,7 @@ export class GetDataService {
   getViewPref() {
     let pref = localStorage.getItem("pref");
     if (pref) return JSON.parse(pref);
-    else return { view: "col-3" };
+    else return { view: "col-lg-3" };
   }
 
   // returns name of category by category id
