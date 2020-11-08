@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-
+import { ViewportScroller } from "@angular/common";
 import {
   Category,
   GetDataService,
@@ -161,8 +161,13 @@ export class LeftComponent implements OnInit {
   constructor(
     public service: GetDataService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private viewportScroller: ViewportScroller
   ) {}
+
+  public onClick(elementId: string): void {
+    this.viewportScroller.scrollToAnchor(elementId);
+  }
 
   ReBuildControls() {
     // get unique makes and their count

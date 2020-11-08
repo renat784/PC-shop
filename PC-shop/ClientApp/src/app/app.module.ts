@@ -22,7 +22,7 @@ import { MotherboardComponent } from "./motherboard/motherboard.component";
 import { MouseComponent } from "./mouse/mouse.component";
 import { RamComponent } from "./ram/ram.component";
 import { VideocardComponent } from "./videocard/videocard.component";
-import { FooterComponent } from './footer/footer.component';
+import { FooterComponent } from "./footer/footer.component";
 
 @NgModule({
   declarations: [
@@ -50,21 +50,24 @@ import { FooterComponent } from './footer/footer.component';
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot([
-      { path: "", component: HomeComponent, pathMatch: "full" },
-      { path: "home", redirectTo: "" },
-      { path: "cpu", component: CpuComponent },
-      { path: "details/:categoryId/:productId", component: DetailsComponent },
-      { path: "ssd", component: SsdComponent },
-      { path: "hdd", component: HddComponent },
-      { path: "keyboard", component: KeyboardComponent },
-      { path: "monitor", component: MonitorComponent },
-      { path: "motherboard", component: MotherboardComponent },
-      { path: "mouse", component: MouseComponent },
-      { path: "ram", component: RamComponent },
-      { path: "videocard", component: VideocardComponent },
-      { path: "checkout", component: CheckoutComponent },
-    ]),
+    RouterModule.forRoot(
+      [
+        { path: "", component: HomeComponent, pathMatch: "full" },
+        { path: "home", redirectTo: "" },
+        { path: "cpu", component: CpuComponent },
+        { path: "details/:categoryId/:productId", component: DetailsComponent },
+        { path: "ssd", component: SsdComponent },
+        { path: "hdd", component: HddComponent },
+        { path: "keyboard", component: KeyboardComponent },
+        { path: "monitor", component: MonitorComponent },
+        { path: "motherboard", component: MotherboardComponent },
+        { path: "mouse", component: MouseComponent },
+        { path: "ram", component: RamComponent },
+        { path: "videocard", component: VideocardComponent },
+        { path: "checkout", component: CheckoutComponent },
+      ],
+      { anchorScrolling: "enabled" }
+    ),
   ],
   providers: [],
   bootstrap: [AppComponent],

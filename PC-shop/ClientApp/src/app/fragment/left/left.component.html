@@ -1,4 +1,20 @@
-<div>
+<!-- 'filter and results' displays only for phone -->
+<div class="filter">
+  <div class="row mx-0">
+    <div class="col-6 px-0">
+      <button (click)="onClick('filters')" class="btn btn-dark col-12">
+        Фильтр
+      </button>
+    </div>
+    <div class="col-6 pr-0">
+      <button (click)="onClick('top')" class="btn btn-dark col-12">
+        Результаты
+      </button>
+    </div>
+  </div>
+</div>
+
+<div id="filters" class="mt-5 mt-md-0">
   <p>
     <span>Производитель</span>
     <span class="ml-2">{{ makes.length }}</span>

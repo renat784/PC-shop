@@ -23,3 +23,42 @@ code {
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
+
+/* displays view mode 'small, large' only for large monitors and above */
+.view-toggle {
+  display: none;
+}
+
+.filter {
+  z-index: 10;
+  background-color: white;
+  position: fixed;
+  width: 100%;
+  left: 0%;
+  bottom: 0;
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+/* No media query since this is the default in Bootstrap */
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .filter {
+    display: none;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .view-toggle {
+    display: block;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+}
