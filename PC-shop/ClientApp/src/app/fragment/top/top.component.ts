@@ -104,8 +104,6 @@ export class TopComponent implements OnInit {
         this.service.setViewPref({ view: this.view });
         break;
     }
-    // this.router.navigate([this.componentName], {queryParams: {}});
-    // console.log("clicked");
   }
 
   ChangeSelected(sortParam) {
@@ -153,16 +151,6 @@ export class TopComponent implements OnInit {
           this.ChangeSelected(sortParam);
           break;
       }
-      // if (i.sort == "asc") {
-      //   sortParam = "sort=asc";
-      //   this.ChangeSelected(sortParam);
-      // } else if (i.price == "asc") {
-      //   sortParam = "price=asc";
-      //   this.ChangeSelected(sortParam);
-      // } else if (i.price == "desc") {
-      //   sortParam = "price=desc";
-      //   this.ChangeSelected(sortParam);
-      // }
     });
   }
 }

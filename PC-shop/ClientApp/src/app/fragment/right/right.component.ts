@@ -1,12 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import {
-  Category,
-  CategoryName,
-  GetDataService,
-} from "src/app/get-data.service";
+import { GetDataService } from "src/app/get-data.service";
 import { Router } from "@angular/router";
 import { ActivatedRoute } from "@angular/router";
-import { stringify } from "querystring";
 
 @Component({
   selector: "app-right",
@@ -24,11 +19,7 @@ export class RightComponent implements OnInit {
   @Output() productsChanged = new EventEmitter();
   @Output() countChanged = new EventEmitter<number>();
 
-  constructor(
-    public service: GetDataService,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {}
+  constructor(public service: GetDataService, private route: ActivatedRoute) {}
 
   // sets checked checkboxes from url
   QueryUrl(propertyName) {
@@ -54,12 +45,6 @@ export class RightComponent implements OnInit {
     }
     // many values
     if (value.indexOf(",") != -1) {
-      // this.productsSorted = this.products;
-
-      // gets unique names in property
-      // let array = new Set();
-      // this.productsSorted.map((i) => array.add(i[propertyName]));
-
       console.log("many values");
       let localSorted = [];
       let queryArray = value.split(",");
@@ -84,8 +69,6 @@ export class RightComponent implements OnInit {
       this.productsSorted = localSorted;
 
       console.log(this.productsSorted);
-      // notice left component about changes in products
-      // this.productsChanged.emit(this.productsSorted);
     }
   }
 

@@ -13,19 +13,6 @@ export class DetailsComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, public service: GetDataService) {}
 
-  // GetImage(ssd) {
-  //   return "images/parts/ssd/" + ssd.images.split(";")[0].trim();
-  // }
-
-  // GetImages() {
-  //   let array = this.ssd.images.split(";");
-  //   for (let index = 0; index < array.length; index++) {
-  //     const element = array[index];
-  //     array[index] = "images/parts/ssd/" + element.trim();
-  //   }
-  //   return array;
-  // }
-
   ngOnInit() {
     this.route.params.subscribe((i) => {
       let id = i["id"];

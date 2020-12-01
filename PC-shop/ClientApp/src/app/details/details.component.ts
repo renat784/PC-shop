@@ -1,9 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
-import { filter } from "rxjs/operators";
+import { ActivatedRoute } from "@angular/router";
 import { GetDataService } from "../get-data.service";
 import { Location } from "@angular/common";
-import { RouterExtService } from "../router-ext.service";
 
 @Component({
   selector: "app-details",
