@@ -7,7 +7,7 @@ import { RouterModule } from "@angular/router";
 import { AppComponent } from "./app.component";
 import { NavMenuComponent } from "./nav-menu/nav-menu.component";
 import { HomeComponent } from "./home/home.component";
-import { ProcessorsComponent } from "./processors/processors.component";
+
 import { CheckoutComponent } from "./checkout/checkout.component";
 import { SsdComponent } from "./ssd/ssd.component";
 import { TopComponent } from "./fragment/top/top.component";
@@ -29,7 +29,7 @@ import { FooterComponent } from "./footer/footer.component";
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    ProcessorsComponent,
+
     CheckoutComponent,
     SsdComponent,
     TopComponent,

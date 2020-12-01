@@ -91,53 +91,6 @@ namespace PC_shop.Controllers
             }
         }
 
-        //// GET: Products/GetCpuList
-        //[HttpGet]
-        //public async Task<ActionResult<IEnumerable<IProduct>>> GetCpuList()
-        //{
-
-        //    return await _context.CpuList.ToListAsync();
-        //}
-
-        //// GET: Products/GetCpu/5
-        //[HttpGet("{id}")]
-        //public async Task<ActionResult<IProduct>> GetCpu(int id)
-        //{
-        //    var cpu = await _context.CpuList.FindAsync(id);
-
-        //    if (cpu == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return cpu;
-        //}
-
-        //// GET: Products/getSsdList
-        //[HttpGet]
-        //public async Task<ActionResult<IEnumerable<Ssd>>> GetSsdList()
-        //{
-        //    return await _context.SsdList.ToListAsync();
-        //}
-
-        //// GET: Products/getSsd/5
-        //[HttpGet("{id}")]
-        //public async Task<ActionResult<Ssd>> GetSsd(int id)
-        //{
-        //    var ssd = await _context.SsdList.FindAsync(id);
-
-        //    if (ssd == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return ssd;
-        //}
-
-
-        //private bool CpuExists(int id)
-        //{
-        //    return _context.CpuList.Any(e => e.Id == id);
-        //}
+        
     }
 }

@@ -32,6 +32,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\WeatherForecastController.cs" />
+    <Compile Remove="WeatherForecast.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\Images\parts\cpu\amd_ryzen_3_3100_images_18001297027.jpg" />
     <None Include="wwwroot\Images\parts\cpu\amd_ryzen_3_3100_images_18001297993.jpg" />
     <None Include="wwwroot\Images\parts\cpu\amd_ryzen_3_3100_images_18001298413.jpg" />
