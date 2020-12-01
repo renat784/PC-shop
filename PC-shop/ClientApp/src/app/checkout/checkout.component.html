@@ -23,7 +23,7 @@
                       [src]="service.GetImage(item.product)"
                     />
                   </div>
-                  <div class="col-7 col-md-3">
+                  <div class="col-7 text-right col-md-3">
                     <span>{{
                       service.getNameById(item.product.categoryId)
                     }}</span>
@@ -44,24 +44,30 @@
                 <hr />
               </li>
             </ul>
-            <div style="display: flex; justify-content: space-between">
-              <button
-                data-toggle="modal"
-                data-target="#shoppingCart"
-                class="btn btn-outline-info"
-              >
-                Изменить заказ
-              </button>
-              <a [routerLink]="['/']" class="btn btn-outline-success">
-                Продолжить покупки
-              </a>
-              <button
-                data-toggle="modal"
-                data-target="#cancelOrderModal"
-                class="btn btn-outline-danger"
-              >
-                Отменить заказ
-              </button>
+            <div class="row mx-0 text-center">
+              <div class="col-12 col-md-4">
+                <button
+                  data-toggle="modal"
+                  data-target="#shoppingCart"
+                  class="btn btn-outline-info"
+                >
+                  Изменить заказ
+                </button>
+              </div>
+              <div class="col-12 col-md-4 mt-4 mb-5 my-md-0 px-md-0">
+                <a [routerLink]="['/']" class="btn btn-outline-success">
+                  Продолжить покупки
+                </a>
+              </div>
+              <div class="col-12 col-md-4">
+                <button
+                  data-toggle="modal"
+                  data-target="#cancelOrderModal"
+                  class="btn btn-outline-danger"
+                >
+                  Отменить заказ
+                </button>
+              </div>
             </div>
           </div>
         </div>
