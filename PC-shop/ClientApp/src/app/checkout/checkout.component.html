@@ -1,29 +1,6 @@
 <h3 class="mb-5">Оформление заказа</h3>
 <div class="row">
-  <div class="col-8">
-    <!-- log form -->
-    <div>
-      <h5>Ваши контактные данные</h5>
-      <div class="my-3">
-        <a href="#">Я новый покупатель</a>
-        <a class="ml-5" href="#">Я постоянный клиент</a>
-      </div>
-      <div class="row">
-        <div class="col-6">
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input class="form-control" type="text" id="name" />
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="form-group">
-            <label for="lastName">LastName</label>
-            <input class="form-control" type="text" id="lastName" />
-          </div>
-        </div>
-      </div>
-    </div>
-
+  <div class="col-lg-8 col-12">
     <!-- Order -->
     <div class="card my-3">
       <div class="card-body">
@@ -39,13 +16,14 @@
             <ul *ngIf="cart" class="list-unstyled">
               <li class="my-5" *ngFor="let item of cart">
                 <div class="row" style="align-items: center">
-                  <div class="col-2">
+                  <!-- cart item -->
+                  <div class="col-3 pr-0 col-md-2">
                     <img
                       style="max-width: 100px; height: 75px"
                       [src]="service.GetImage(item.product)"
                     />
                   </div>
-                  <div class="col-4">
+                  <div class="col-7 col-md-3">
                     <span>{{
                       service.getNameById(item.product.categoryId)
                     }}</span>
@@ -53,12 +31,12 @@
                     <small>{{ item.product.make }}</small> <br />
                     <small>{{ item.product.name }}</small>
                   </div>
-                  <div class="col-1 px-0">{{ item.count }} шт.</div>
-                  <div class="col-2">
+                  <div class="col-2 col-md-1 px-0">{{ item.count }} шт.</div>
+                  <div class="col-6 mt-4 mt-md-0 col-md-3">
                     <div>{{ item.product.price }} USD</div>
                     <small>цена за 1 шт.</small>
                   </div>
-                  <div class="col-3">
+                  <div class="col-6 mt-4 mt-md-0 col-md-3">
                     <div>{{ item.count * item.product.price }} USD</div>
                     <small>итого за {{ item.count }} шт.</small>
                   </div>
@@ -91,7 +69,7 @@
     </div>
   </div>
   <!-- promocode -->
-  <div class="col-4">
+  <div class="col-lg-4 col-12">
     <div
       class="card my-3"
       style="width: 18rem; background-color: rgb(247, 247, 247)"

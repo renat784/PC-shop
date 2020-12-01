@@ -97,20 +97,21 @@
         </div>
         <ul *ngIf="service.GetItemsCount() !== 0" class="list-unstyled">
           <li class="mb-5" *ngFor="let item of service.GetItemsFromCart()">
-            <div class="row">
-              <div class="col-1">
+            <div class="row text-center">
+              <!-- cart item -->
+              <div class="col-lg-1 col-4">
                 <img
                   style="max-width: 100px; height: 50px"
                   [src]="service.GetImage(item.product)"
                 />
               </div>
-              <div class="col-4 pl-5">
-                <span class="ml-3"
+              <div class="col-lg-3 pl-lg-5 col-8 pl-3 text-right pr-3">
+                <span class="ml-lg-3 ml-md-0"
                   >{{ service.getNameById(item.product.categoryId) }}
                   {{ item.product.make }} {{ item.product.name }}</span
                 >
               </div>
-              <div class="col-3 px-0">
+              <div class="col-lg-3 px-lg-0 py-3 py-md-4 py-lg-0 text-center">
                 <button
                   title="Убрать 1 шт."
                   class="btn btn-outline-info"
@@ -135,12 +136,12 @@
                   +
                 </button>
               </div>
-              <div title="Цена за 1 шт." class="col-2">
+              <div title="Цена за 1 шт." class="col-lg-2 col-5">
                 <div>{{ item.product.price }} USD</div>
                 <small>цена за 1 шт.</small>
               </div>
-              <div class="col-2 pl-0" style="display: flex">
-                <div>
+              <div class="col-lg-3 pl-lg-0 col-7 pl-0" style="display: flex">
+                <div class="col-8 pl-0">
                   <div title="Цена за {{ item.count }} шт.">
                     {{ item.product.price * item.count }} USD
                   </div>
@@ -151,71 +152,52 @@
                     (click)="
                       service.RemoveItemFromCart(item.product); OrderChanged()
                     "
-                    class="fa fa-trash ml-5 link p-2"
+                    class="fa fa-trash link p-2"
                     title="Удалить товар"
                     aria-hidden="true"
                   ></i>
                 </div>
               </div>
+
+              <!-- end of cart item -->
             </div>
+            <hr />
           </li>
         </ul>
       </div>
-      <div
-        *ngIf="service.GetItemsCount() !== 0"
-        class="modal-footer"
-        style="justify-content: space-between"
-      >
-        <button
-          (click)="service.RemoveItemsFromCart(); OrderChanged()"
-          type="button"
-          class="btn btn-outline-danger"
-          data-toggle="modal"
-          data-target="#shoppingCart"
-        >
-          Очистить корзину
-        </button>
-        <!-- promo code -->
-        <!-- <div>
-          <input
-            type="text"
-            class="form-control"
-            (input)="InputForPromocodeChanged($event.target.value)"
-            style="width: 150px; display: inline"
-            placeholder="промокод"
-            title="Введите промокод чтобы получить скидку. Например, RENAT"
-          />
-          <span
-            style="margin-left: 25px; font-weight: 600; color: green"
-            *ngIf="discount"
-            >Скидка {{ discount }} %</span
-          >
-        </div> -->
-        <div>
-          <!-- <span
-            *ngIf="oldTotal"
-            style="text-decoration: line-through; color: gray"
-            >Всего: {{ oldTotal }} USD</span
-          > -->
+      <!-- buttons and total price at bottom of cart -->
+      <div *ngIf="service.GetItemsCount() !== 0">
+        <div class="row mx-0 py-3">
+          <div class="col-lg-4 col-6 pr-0 order-lg-first">
+            <button
+              (click)="service.RemoveItemsFromCart(); OrderChanged()"
+              type="button"
+              class="btn btn-outline-danger"
+              data-toggle="modal"
+              data-target="#shoppingCart"
+            >
+              Очистить корзину
+            </button>
+          </div>
 
-          <h4>
-            Всего:
-            <!-- <span *ngIf="!discount" class="ml-3" -->
-            <span class="ml-3">{{ service.PriceTotal() }} USD</span>
-            <!-- <span *ngIf="discount" class="ml-3"
-              >{{
-                service.PriceTotal() - (service.PriceTotal() * discount) / 100
-              }}
-              USD</span
-            > -->
-          </h4>
+          <div
+            class="col-lg-4 col-12 pb-2 text-right text-lg-center order-first"
+          >
+            <h4>
+              Всего:
+              <span class="ml-3">{{ service.PriceTotal() }} USD</span>
+            </h4>
+          </div>
+
+          <div class="col-lg-4 col-6 text-right">
+            <a
+              [routerLink]="['/checkout']"
+              data-dismiss="modal"
+              class="btn btn-outline-success"
+              >Оформить заказ</a
+            >
+          </div>
         </div>
-        <a
-          [routerLink]="['/checkout']"
-          data-dismiss="modal"
-          class="btn btn-outline-success"
-          >Оформить заказ</a
-        >
       </div>
     </div>
   </div>
